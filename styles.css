@@ -1,0 +1,20 @@
+body {
+    background-color: black;
+}
+
+.white { 
+    color: white;
+}
+
+.center {
+    text-align: center;
+}
+
+.list-center {
+    list-style-position: inside;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
