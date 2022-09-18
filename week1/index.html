@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>W01 Exercise</title>   
+        <link rel="stylesheet" href="styles.css" />     
+    </head>
+    <body>
+        <h1>Week 01 Notes Master Mobile UX</h1>
+        <h3>Lesson 1</h3>
+        <ol>
+            <ul> • Design for the smallest and least powerful first, then content and functionality.</ul>
+            <ul> • Personal computers have been on the decline since 2011, meanwhile mobile usage has skyrocketed</ul>
+            <ul> • Average person has 2-3 devices per person, per household</ul>
+            <ul> • Eric Schmidt: do mobile first from 2012</ul>
+            <ul> • Responsive retrofitting: No touch interaction, goes from big screen to small</ul>
+            <ul> • Mobile first: Small screen to large, provides best experience across many devices, future friendly</ul>
+        </ol>
+        <h3>Lesson 2</h3>
+        <ol>
+            <ul> • Be immediate: if the site isn’t available for mobile, customer will be lost</ul>
+            <ul> • Be relevant: needs to serve their needs, only 9% will stay</ul>
+            <ul> • Be quick: reduce cognitive load of user. </ul>
+            <ul> • Reduce the amount of steps users need to do</ul>
+            <ul> • Reachability: 75% of people rely on their thumb. Reachability and buttons matter. Keep key items near the bottom of the screen</ul>
+            <ul> • Google: ½ second delay = 20% drop in traffic</ul>
+            <ul> • Bing: 2 second delay = 4% drop in revenue</ul>
+            <ul> • Aol: Fastest users stay 50% longer</ul>
+            <ul> • Faster responses keep users engaged</ul>
+            <ul> • 3G mobile speeds are the majority of the global market at nearly 25% compared to 4G at 1.8%, design for less loading</ul>
+            <ul> • Lower image quality and usage</ul>
+            <ul> • SVG/Webfonts are lower bandwidth</ul>
+            <ul> • Optimize and minify CSS and JS files</ul>
+            <ul> • GZIP files to eliminate unnecessary data</ul>
+        </ol>
+        <h3>Lesson 3</h3>
+        <ol>
+            <ul> • Menu and Nav should be at bottom</ul>
+            <ul> • Facebook moved menu towards bottom and the user perception thought the app was faster</ul>
+            <ul> • Menu with a border had 20% increase in clicks compared to hamburger menu</ul>
+        </ol>
+        <h3>Lesson 4</h3>
+        <ol>
+            <ul> • Use placeholder text inside labels to reduce the need of outside labels for forms or float labels</ul>
+            <ul> • Only ask for information needed</ul>
+            <ul> • Enable auto complete on forms to prevent errors</ul>
+            <ul> • Show password by default, and allow option to hide</ul>
+            <ul> • Use correct keyboards for applications, such as numbers only for telephone</ul>
+            <ul> • Use hyperlink to allow users to tap and make a phone call</ul>
+        </ol>
+        <h3>Lesson 5</h3>
+        <ol>
+            <ul> • Don’t have popups to restrict content, loses customers</ul>
+            <ul> • Ads shouldn’t take more than 40% of the screen, start with small one that users can tap to enlarge.</ul>
+            <ul> • Content should come first</ul>
+        </ol>
+        <h3>Key Points</h3>
+        <ol>
+            <ul> • Design for mobile first, then scale up to desktop</ul>
+            <ul> • Mobile is the largest and growing factor within consumer technology</ul>
+            <ul> • Optimize website by reducing unnecessary CSS and JS, reducing the number of images, and GZIP files for data</ul>
+            <ul> • Forms should use floating labels along with only asking for the required information</ul>
+            <ul> • Ads shouldn’t take priority over the content space on a mobile site</ul>
+        </ol>
+        <h1>Coding Exercise 01</h1>
+        <h3>Create a note:</h3>
+        <input id="note_title" placeholder="Note title"></input>
+        <br>
+        <textarea id="note_contents" placeholder="Enter your notes here."></textarea>
+        <br>
+        <button onclick="saveNote()">Save Note</button>
+        <button onclick="retrieveNote()"">Retrieve Note from Title</button>
+        <h1>Coding Exercise 02: Reminders List (Not Working Yet)</h1>
+        <input id="reminder" placeholder="Enter your reminder here" width="100px"></input>
+        <button onclick="saveReminder()">Save</button>
+        <br>
+        <button onclick="getReminders()">Reminders</button>
+        <div id="output"></div>
+    </body>
+    <script src="main.js"></script>
+</html>
