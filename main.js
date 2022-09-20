@@ -2,7 +2,9 @@ const links = [
     {
         label: "Week 1 Notes",
         link: "week1/index.html"
-    }
+    },
+    {label: "Week 2 Notes", link: "week2Notes/index.html"},
+    {label: "Week 2 Coding Examples", link: "week2Code/index.html"},
 ]
 var list_container = document.getElementById("list-container");
 for (let i = 0; i < links.length; i++){
