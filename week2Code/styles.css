@@ -1,12 +1,4 @@
-main {
-    margin-left: 20vw;
-    margin-right: 20vw;
-    width: 55vw;
-}
-
-body {
-    margin: 0;
-}
+@import "../template.css";
 
 #codeGrid{
     display: flex;

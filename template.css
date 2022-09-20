@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+}
+
+nav {
+    width: 10%;
+    max-height: 100%;
+    justify-content: center;
+    padding: 5px;
+}
+
+nav > a {
+    display: block;
+    border-radius: 15px;
+    color: red;
+    font-size: 3vw;
+    padding: 5px;
+    max-height: fit-content;
+    text-align: center;
+    text-decoration: none;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    max-height: 10vh;
+}
+main {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    width: 55vw;
+}
+
+.title {
+    width: 80%;
+    text-align: center;
+    color: #3b403c;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.code {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #3b403c;
+    color: #ffff;
+}

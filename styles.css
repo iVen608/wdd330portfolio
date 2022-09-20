@@ -1,10 +1,4 @@
-body {
-    background-color: black;
-}
-
-.white { 
-    color: white;
-}
+@import "template.css";
 
 .center {
     text-align: center;
@@ -16,5 +10,5 @@ body {
 
 a:visited {
     text-decoration: none;
-    color: white;
+    color: #000;
 }
