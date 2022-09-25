@@ -43,3 +43,7 @@ main {
     background-color: #3b403c;
     color: #ffff;
 }
+
+span, li, p {
+    line-height: 25px;
+}

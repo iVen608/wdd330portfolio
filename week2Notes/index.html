@@ -15,8 +15,63 @@
         <h1 class="title">Week 2 Notes</h2>
     </header>
     <main>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quo sapiente blanditiis maxime reprehenderit iusto tempora consequatur, temporibus rem iure accusamus doloribus illum perspiciatis nisi adipisci aut! Sapiente, saepe laudantium?</p>
-        <p class="code">const j = 5; >> etc</p>
+        <h3>Chapter 2 Readings:</h3>
+        <ul>
+            <li>Var is typically used in older programming as its scope is global</li>
+            <li>Let was introduced in ES6, but couldn’t modify behavior of Var due to backwards compatibility</li>
+            <li>Block scope = const and let, value only exists in block they are declared</li>
+            <li>Global scope = var, accessible everywhere</li>
+            <li>Blocks {} can be used to make local scope, local scope means the variable is only accessible in that block</li>
+            <li>Backslash guide: </li>
+            <li>Single quote marks: <span class="code">\'</span></li>
+            <li>Double quote marks: <span class="code">\"</span></li>
+            <li>End of line: <span class="code">\n</span></li>
+            <li>Carriage return: <span class="code">\r</span></li>
+            <li>Tab: <span class="code">\t</span></li>
+            <li>Convert number to a string: <span class="code">string(9) or 9..toString();</span></li>
+            <li>String to int: <span class="code">parseInt(‘108’)</span> you can also specify the base 2, 36, 10</li>
+            <li>Null: no value </li>
+            <li>Undefined: NaN</li>
+            <li>Lazy Evaluation:</li>
+            <li><span class="code">let a = 0</span></li>
+            <li><span class="code">false && (a=1) << false</span></li>
+            <li><span class="code">false || (a = 1) << 1 //a =1 now </span></li>
+            <li><span class="code">===</span> : tests for equality if they are the same data type</li>
+            <li><span class="code">==</span> : tests for equality without taking for account data type</li>
+            <li>0 is falsy value
+        </ul>
+        
+
+        <h3>Chapter 3 Readings:</h3>
+        <ul>
+        
+        <li><span class="code">pop()</span> – removes last item in array</li>
+        <li><span class="code">shift()</span> – removes first item in array</li>
+        <li><span class="code">push(value)</span> – puts value at end of array</li>
+        <li><span class="code">unshift(value)</span> – appends item to beginning of the array</li>
+        <li><span class="code">concat(array, array)</span> – merges the two arrays together </li>
+        <li><span class="code">join()</span> – stringify array </li>
+        <li><span class="code">splice(x, y)</span> – cuts array between the two indexes</li>
+        <li><span class="code">splice(x, y, value)</span> – cuts array similar to slice() and puts value in place</li>
+        <li><span class="code">reverse()</span> – reverses order</li>
+        <li><span class="code">sort()</span> – sorts alphabetically </li>
+        <li><span class="code">...</span> - spread syntax</li>
+        <li><span class="code">const flat = […summer, …winter] << [combined arrays]</span></li>
+        <li><span class="code">set()</span> = useful for checking data, as any duplicate data is ignored</li>
+        <li><span class="code">weakset()</span> – garbage collects any removed objects</li>
+        <li><span class="code">map()</span> – similar to dictionary with key, pair values</li>
+        <li>temery operator - <span class="code">?</span></li>
+        </ul>
+
+        <h3>Chapter 4:</h3>
+        <p>Function declarations:</p>
+        <p>Arrow: <span class="code">const add = () => {}</span></p>
+        <p>Declaration: <span class="code">function Add() {}</span></p>
+        <p>Other: <span class="code">const add = function (){}</span></p>
+        <p>Callbacks:</p>
+        <p class="code">function a(){console.log(‘a’);
+        <p class="code">function ab(callback){ callback(); return “a”}
+        <p class="code">ab(a()) ; //’a’ < a</p>
     </main>
 </body>
 </html>
