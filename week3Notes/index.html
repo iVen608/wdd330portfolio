@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />   
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">X</a>
+        </nav>
+        <h1 class="title">Week 3 Notes</h2>
+    </header>
+    <main>
+        <h3>Chapter 5</h3>
+        <ul>
+            <li>Object Literals</li>
+            <li>Objects: similar to dictionaries/classes but more versatile</li>
+            <li>Objects have key, value pairs, if the value is a function it is known as a method</li>
+            <li>Example: </li>
+            <li class="code">const superman = {name: 'Superman', 'real name': 'Clark Kent', height: 75, allies: ['Batman','Supergirl','Superboy'], fly() {return 'Up, up and away!' }};</li>
+            <li>Creating Objects</li>
+            <li class="code">const spiderman = {};</li>
+            <li>Access information either by superman.height or superman[‘height’] </li>
+            <li>Access through bracket notation allows for string concatenation</li>
+            <li>New property can be made through Symbol and bracket Notation</li>
+            <li class="code">const variety = Symbol(‘varietyType’); </li>
+            <li class="code">tree[variety] = ‘pine’; </li>
+            <li>Calling Methods</li>
+            <li>Either: <span class="code"> tree.fall(); << tree falls OR tree[‘fall’]() << tree falls</span></li>
+            <li>Checking if Properties or Methods Exist</li>
+            <li class="code"> ‘money’ in tree; << false</li>
+            <li class="code">tree.money !== undefined; << false</li>
+            <li class="code">tree.hasOwnProperty(‘money’); << false</li>
+            <li>hasOwnProperty will only return tree if belongs to own object, not inherited from another. </li>
+            <li>Finding all of the Properties of An Object</li>
+            <li>For in loop can be used, returns all properties and methods</li>
+            <li>To only obtain properties: </li>
+            <li class="code">for(const key in tree){if(tree.hasOwnProperty(key)){console.log(tree[key]}} </li>
+            <li class="code">Object.keys(tree) << returns array of keys</li>
+            <li class="code">Object.values(tree) << returns array of values per property</li>
+            <li class="code"> Object.entries(tree) << returns array of key-value pairs. </li>
+            <li>Adding Properties</li>
+            <li class="code">tree.barkColor = “brown”; << {barkColor: “brown”} </li>
+            <li>Changing Properties</li>
+            <li class="code">tree[‘barkColor’] = “gray”; << {barkColor: “gray”} </li>
+            <li>Delete Properties</li>
+            <li class="code">delete tree.barkColor << true</li>
+            <li>Nested Objects</li>
+            <li class="code">const forest = { Tree1: {variety: ‘pine’}, Tree2: {variety: ‘birch’}}</li>
+            <li class="code">forest.Tree1.variety OR forest[‘Tree1’][‘variety’] OR forest.Tree1[‘variety’]<< ‘pine’</li>
+            <li>Objects are cloned by reference, not creating a new object when creating copy of object</li>
+            <li>Objects as Parameters</li>
+            <li>This refers to the object within</li>
+            <li class="code">Const tree = {variety: ‘birch’, alive: True, fall(){console.log(‘tree fell’); this.alive = False;}} </li>
+            <li>JSON</li>
+            <li>Stringify -> turns object into string</li>
+            <li>Parse -> turns string into object</li>
+        </ul>
+        <h3>Chapter 6</h3>
+        <ul>
+            <li>The Document Object Model (DOM) </li>
+            <li>Treats everything on webpage as nodes and the HTML tag is the root node. Every other part is child node</li>
+            <li>Extra #text in node is due whitespace</li>
+            <li>Node type codes: 1 – element, 2 – attribute, 3 – text, 8 – comment, 9 – body</li>
+            <li class="code">body.nodeName; << “BODY” </li>
+            <li>Nodes are similar to arrays with indexing and length but cannot use other array methods</li>
+            <li class="code">Tree.childNodes << NodeList [#text “,” <li class=”leaf”>, #text”] </li>
+            <li class="code">Trees.children << HTMLCollection [li class=”leaf”, li class=”leaf”>] <<returns only element nodes</li>
+            <li class="code">Trees.firstChild << returns first child node</li>
+            <li class="code">Trees.lastChild << returns last child node</li>
+        </ul>
+        <h3>Chapter 7</h3>
+        <ul>
+            <li class="code">Document.body.addEventListener(“click”, doSomething);</li>
+            <li>Avoid inline events in HTML code</li>
+            <li>Events have parameter of event with six attributes, screen x & screen y, client X and client Y, and page X and page Y. </li>
+            <li>Other common events, keydown, mousemove, moveover, mouseout, dbclick</li>
+            <li>To remove events: </li>
+            <li class="code">removeEventListener(event, function) </li>
+            <li class="code"> preventDefault() – be wary as prevents default behavior of event which others are used to</li>
+            <li class="code">event.stopPropagation() << can stop initiation calls of function</li>
+        </ul>
+    </main>
+    <!--<iframe src="notes.txt" id="fileObj" width="80%" height="1000px"></iframe>-->
+    <script src="main.js"></script>
+</body>
+</html>

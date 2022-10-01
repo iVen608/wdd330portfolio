@@ -1,0 +1,59 @@
+Chapter 5:
+Object Literals
+Objects: similar to dictionaries/classes but more versatile
+Objects have key, value pairs, if the value is a function it is known as a method
+Example:
+const superman = {name: 'Superman', 'real name': 'Clark Kent', height: 75, allies: ['Batman','Supergirl','Superboy'], fly() {return 'Up, up and away!' }};
+Creating Objects
+const spiderman = {};
+Access information either by superman.height or superman[‘height’] 
+Access through bracket notation allows for string concatenation
+New property can be made through Symbol and bracket Notation
+const variety = Symbol(‘varietyType’);
+tree[variety] = ‘pine’;
+Calling Methods
+Either:
+tree.fall(); << tree falls
+tree[‘fall’]() << tree falls
+Checking if Properties or Methods Exist
+‘money’ in tree; << false
+tree.money !== undefined; << false
+tree.hasOwnProperty(‘money’); << false
+hasOwnProperty will only return tree if belongs to own object, not inherited from another.
+Finding all of the Properties of An Object
+For in loop can be used, returns all properties and methods
+To only obtain properties
+For(const key in tree){
+     If(tree.hasOwnProperty(key)){console.log(tree[key]}
+}
+Object.keys(tree) returns array of keys
+Object.values(tree)returns array of values per property
+Object.entries(tree) returns array of key-value pairs.
+Adding Properties
+tree.barkColor = “brown”; << {barkColor: “brown”}
+Changing Properties
+tree[‘barkColor’] = “gray”; << {barkColor: “gray”}
+Delete Properties
+delete tree.barkColor << true
+Nested Objects
+const forest = { Tree1: {variety: ‘pine’}, Tree2: {variety: ‘birch’}}
+forest.Tree1.variety OR forest[‘Tree1’][‘variety’] OR forest.Tree1[‘variety’]
+<< ‘pine’
+Objects are cloned by reference, not creating a new object when creating copy of object
+Objects as Parameters
+This refers to the object within
+Const tree = {variety: ‘birch’, alive: True, fall(){console.log(‘tree fell’); this.alive = False;}}
+JSON
+Stringify -> turns object into string
+Parse -> turns string into object
+Chapter 6:
+The Document Object Model (DOM)
+Treats everything on webpage as nodes and the HTML tag is the root node. Every other part is child node
+Extra #text in node is due whitespace
+Node type codes: 1 – element, 2 – attribute, 3 – text, 8 – comment, 9 – body
+body.nodeName; << “BODY”
+Nodes are similar to arrays with indexing and length but cannot use other array methods
+Tree.childNodes << NodeList [#text “,” <li class=”leaf”>, #text”]
+Trees.children << HTMLCollection [<li class=”leaf”>, li class=”leaf”>] <<returns only element nodes
+Trees.firstChild << returns first child node
+Trees.lastChild << returns last child node
