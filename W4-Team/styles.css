@@ -1,0 +1,36 @@
+#board {
+    display: grid;
+    width: 75vw;
+    height: 75vh;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+}
+
+main {
+    padding: 100px;
+}
+
+.x {
+    background-color: lightcoral;
+    color: white;
+    line-height: 25vh;
+    text-align: center;
+    font-size: 200px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.o {
+    background-color: lightblue;
+    color: white;
+    line-height: 25vh;
+    text-align: center;
+    font-size: 200px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.box {
+    width: 25vw;
+    height: 25vh;
+    background-color: azure;
+    border: 2px solid black;    
+}

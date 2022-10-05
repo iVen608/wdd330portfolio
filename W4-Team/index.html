@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />   
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div id="board">
+            <div id="1" class="box"></div>
+            <div id="2" class="box"></div>
+            <div id="3" class="box"></div>
+            <div id="4" class="box"></div>
+            <div id="5" class="box"></div>
+            <div id="6" class="box"></div>
+            <div id="7" class="box"></div>
+            <div id="8" class="box"></div>
+            <div id="9" class="box"></div>
+        </div>
+        <button type="button" id="reset">Reset Board</button>
+    </main>
+    <script>
+        let turn = 1;
+        const boxes = document.getElementsByClassName("box");
+        for(let box of boxes){
+            box.addEventListener("touchend", () => {
+                if(box.innerHTML === ''){
+                    box.innerHTML = turn == 1 ? "x" : turn == -1 ? "o" : "";
+                    box.className = turn == 1 ? "x" : turn == -1 ? "o" : "";
+                    turn *= -1;
+                }    
+            }, false);
+        }
+
+        document.getElementById("reset").addEventListener("click", (event) => {
+            for(let box of boxes){
+                console.log(box);
+                box.innerHTML = "";
+                box.className = "";
+            }
+        })
+    </script>
+</body>
+</html>
