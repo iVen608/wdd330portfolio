@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burrito Builder</title>
+</head>
+<body>
+    <form name="builder" action="/submit">
+        <h3>Contact Details</h3>
+        <label for="firstName">
+            <input type="text" name="firstNameInput" placeholder="First Name" required>
+        </label>
+        <label for="LastName">
+            <input type="text" name="lastNameInput" placeholder="Last Name" required>
+        </label>
+        <h3>Please create your meal</h3>
+        <label for="taco">Taco: 
+            <input type="radio" name="meal" id="taco" value="taco" required>
+        </label>
+        <label for="burrito">Burrito: 
+            <input type="radio" name="meal" id="burrito" value="burrito" required>
+        </label>
+        <label for="burritoBowl">Burrito Bowl: 
+            <input type="radio" name="meal" id="burritoBowl" value="burritoBowl" required>
+        </label>
+        <h4>Build the basics</h4>
+        <select name="protein" id="protein" required>
+            <option value="" selected>Choose your preferred protein</option>
+            <option value="beef">Beef</option>
+            <option value="chicken">Chicken</option>
+            <option value="tofu">Tofu</option>
+            <option value="non">No protein</option>
+        </select>
+        <select name="tortilla" id="tortilla" required>
+            <option value="" selected>Choose your preferred tortilla</option>
+            <option value="flour">Flour</option>
+            <option value="corn">Corn</option>
+            <option value="non">No tortilla</option>
+        </select>
+        <select name="rice" id="rice" required>
+            <option value="" selected>Choose your preferred rice</option>
+            <option value="white">White rice</option>
+            <option value="brown">Brown rice</option>
+            <option value="non">No rice</option>
+        </select>
+        <h4>Optional</h4>
+        <label for="nachoCheese">Nacho Cheese:
+            <input type="checkBox" name="nachoCheese" id="nachoCheese">
+        </label>
+        <label for="sourCream">Sour Cream:
+            <input type="checkBox" name="sourCream" id="sourCream">
+        </label>
+        <label for="hotSauce">Hot Sauce:
+            <input type="checkBox" name="hotSauce" id="hotSauce">
+        </label>
+        <button type="reset">Reset</button>
+        <button type="submit">submit</button>
+    </form>
+    <script src="main.js"></script>
+</body>
+</html>
