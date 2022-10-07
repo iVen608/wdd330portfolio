@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />   
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">X</a>
+        </nav>
+        <h1 class="title">Week 4 Notes</h2>
+    </header>
+    <main>
+        <h3>Chapter 8: Forms</h3>
+        <ul>
+            <li>Forms have a name and action attribute, the action attribute will be sent to the server when the form is submited</li>
+            <li>Several ways to obtain form object:</li>
+            <li class="code"> const form = document.forms[0];</li>
+            <li class="code"> const form = document.getElementsByTagname(‘form’)[0];</li>
+            <li class="code"> const form = document.forms.NAME; // replace NAME with name of form</li>
+            <li class="code"> const form = document.forms[\“NAME\”]; // replace NAME with name of form</li>
+            <li>How to gather form child elements</li>
+            <li class="code">const [input,button] = form.elements;</li>
+            <li class="code">const input = form.NAME //replace NAME with input’s name</li>
+            <li class="code">const input = form[\”NAME\”] //replace NAME with input’s name</li>
+            <li>Form Properties and Methods</li>
+            <li>form.submit() submits the form automatically, and WON’T trigger submit event</li>
+            <li>Submit can be put into either buttons or inputs through type attribute, type=submit</li>
+            <li>Reset is another method to restore form elements to default, type=reset</li>
+            <li>form.action, can set action dynamically from JS</li>
+            <li>Form Events</li>
+            <li>focus: when cursor is inside element, by clicking/tapping/keyboard nav</li>
+            <li>blur: when user changes focus away from current</li>
+            <li>change: focus away after changing value, if no changes then change won’t fire</li>
+            <li>submit: occurs when form is submitted, event.preventDefault() can be used to prevent the form being submitted</li>
+            <li>Form elements have a value that can be grabbed by: input.value, and set within JS</li>
+            <li>placeholder Attribute: the text shown is not the value, and display faint text to aid user</li>
+            <li>Form Controls</li>
+            <li>input – text, passwords, check boxes, radio buttons, and file uploads</li>
+            <li>select – menus for drop-down lists of options</li>
+            <li>textarea – paragraph text entry, ex. comments</li>
+            <li>button – submit or reset form</li>
+            <li>autofocus can be placed within input to focus on first element of form</li>
+            <li>Input Field Types</li>
+            <li>type=password, allows for text to be hidden</li>
+            <li>type=checkbox, allows for user to select True for various options</li>
+            <li>type=radio, allows for user to select from one option in several bubbles, like rate from 1-10</li>
+            <li>The given value can be found from the named category value for the radio buttons</li>
+            <li>type=hidden, not displayed in browser but contain a value. Typically used for settings/info already provided</li>
+            <li>type=file, upload file from local</li>
+            <li>type=number, allows only a number, optional min/max and step attributes</li>
+            <li>Select Drop-Down List</li>
+            <li>Select the drop-down in JS by giving select element name</li>
+            <li>Obtain selection value by using value, and to get the text, use text</li>
+            <li>Textareas</li>
+            <li>Use value and name similar to past types to get and find element </li>
+            <li>Rows and columns can be set to contain size of textarea</li>
+            <li>Form Validation</li>
+            <li>Add required inside element tag to make element of form required</li>
+            <li>Create custom class to add when element is out of compliance to help indicate error</li>
+        </ul>
+        <h3>Chapter 12: OOP</h3>
+        <ul>
+            <li>Polymorphism: several different objects containing same methods</li>
+            <li>Inheritance: borrowing methods from one object to add to another</li>
+            <li>Objects can be declared with constructor function:</li>
+            <li class="code">const tree = function(leaves=2000){this.leaves = leaves;}</li>
+            <li>this refers to the object</li>
+            <li>ES6 added class declaration</li>
+            <li class="code">class tree = {</li>
+            <li class="code">constructor(leaves = 2000){</li>
+            <li class="code">this.leaves = 2000;</li>
+            <li class="code">}</li>
+            <li class="code">const tree = new tree(3000); //creates tree instance</li>
+            <li>All objects have constructor property that shows which function created it</li>
+            <li>Methods defined by static before the name can only be called by the initial instance</li>
+            <li>Prototype property can be used to add methods and property after the initial creation</li>
+            <li>To declare a method as private, use Let</li>
+            <li class="code">tree.prototype.fall = function(){console.log("fell");}</li>
+            <li>All object properties have these attributes</li>
+            <li><span class="code">value</span> - value of property, undefined without set value</li>
+            <li><span class="code">writeable</span> - boolean value, determines if value is changeable</li>
+            <li><span class="code">enumerable</span> - boolean value, determines if property will appear in <span class="code">for in</span> loop</li>
+            <li><span class="code">configurable</span> - boolean value, determines if value can be deleted or change attributes</li>
+            <li>Property descriptors can be seen by <span class="code">Object.getOwnPropertyDescriptor(object, -propertyName)</span> </li>
+            <li>Property descriptors can be set by <span class="code">Object.definePropety(object, propertyName, {value: x, writable: false, enumerable: false})</span>, if values are left out, they are set to their defaults </li>
+            <li><span class="code">Object.definePropety(object, propertyName)</span> can be used to define get and set functions</li>
+            <li><span class="code">Object.create(object)</span> can be used to create instance of object, that inherits same properties and methods</li>
+            <li>Alternative properties and methods could be added as a second parameter to <span class="code">Object.create(object)</span></li>
+            <li>This allows for inheritance, as an example is a default human class could be created, which then a super hero class would inherit the body properties from which, and can be modified to create each super hero</li>
+            <li>Mixins allows for properties and methods to be added to base object without needing inheritance</li>
+            <li><span class="code">Object.assign(objectA, objectB)</span>objectA will gain properties from object, however it is only a shallow copy, referencing the base copy of objectB instead of objectA</li>
+            <li>To create a true mixin, create function to iterate through the keys of object and search through and assign values to new keys through recursion</li>
+            <li>this refers to the current nested, thus if needing to refer to base object, set variable that to this before nesting a function</li>
+            <li>An alternative to using that, is <span class="code">bind(this)</span> which can be added to end of function block</li>
+            <li>Composition over inheritance, recommended to use ‘skinny’ classes, more simplistic and one in nature, allows for less confusion and more readability with multiple inheritances</li>
+        </ul>
+    </main>
+    <!--<iframe src="notes.txt" id="fileObj" width="80%" height="1000px"></iframe>-->
+    <script src="main.js"></script>
+</body>
+</html>
