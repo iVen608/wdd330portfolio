@@ -4,6 +4,7 @@
     height: 75vh;
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(3, auto);
+    margin-bottom: 50px;
 }
 
 main {
@@ -22,15 +23,26 @@ main {
 .o {
     background-color: lightblue;
     color: white;
+    }
+
+.box {
+    width: 25vw;
+    height: 25vh;
+    background-color: azure;
+    border: 2px solid black;
     line-height: 25vh;
     text-align: center;
     font-size: 200px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.box {
-    width: 25vw;
-    height: 25vh;
-    background-color: azure;
-    border: 2px solid black;    
+#button-container {
+    width: 75vw;
+    position: relative;
+}
+
+#button-container > button {
+    position: absolute;
+    top: 50%;
+    left: 40%;
 }

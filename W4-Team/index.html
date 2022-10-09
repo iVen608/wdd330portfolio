@@ -9,37 +9,71 @@
 </head>
 <body>
     <main>
+        <h1 id="turnIndicator"></h1>
         <div id="board">
-            <div id="1" class="box"></div>
-            <div id="2" class="box"></div>
-            <div id="3" class="box"></div>
-            <div id="4" class="box"></div>
-            <div id="5" class="box"></div>
-            <div id="6" class="box"></div>
-            <div id="7" class="box"></div>
-            <div id="8" class="box"></div>
-            <div id="9" class="box"></div>
+            <div id="0" class="box" data-cell-index = "0"></div>
+            <div id="1" class="box" data-cell-index = "1"></div>
+            <div id="2" class="box" data-cell-index = "2"></div>
+            <div id="3" class="box" data-cell-index = "3"></div>
+            <div id="4" class="box" data-cell-index = "4"></div>
+            <div id="5" class="box" data-cell-index = "5"></div>
+            <div id="6" class="box" data-cell-index = "6"></div>
+            <div id="7" class="box" data-cell-index = "7"></div>
+            <div id="8" class="box" data-cell-index = "8"></div>
         </div>
-        <button type="button" id="reset">Reset Board</button>
+        <div id="button-container">
+            <button type="button" id="reset">Reset Board</button>
+        </div>
     </main>
     <script>
-        let turn = 1;
+        let turn = 0;
+        board_state = ["", "", "", "", "", "", "", ""]
+                    //[x, o, "", x, o, "", "", ""]
+        let gameWon = false;
         const boxes = document.getElementsByClassName("box");
         for(let box of boxes){
             box.addEventListener("touchend", () => {
-                if(box.innerHTML === ''){
-                    box.innerHTML = turn == 1 ? "x" : turn == -1 ? "o" : "";
-                    box.className = turn == 1 ? "x" : turn == -1 ? "o" : "";
-                    turn *= -1;
+                if(box.innerHTML === '' && gameWon == false){
+                    const index = parseInt (box.getAttribute("data-cell-index"));
+                    board_state[index] = turn % 2 == 0 ? "x" : turn % 2 == 1 ? "o" : "";
+                    box.innerHTML = turn % 2 == 0 ? "x" : turn % 2 == 1 ? "o" : "";
+                    turn += 1;
+                    if(turn > 4){
+                        gameWon = checkWin();
+                    }
+                    //document.getElementById('turnIndicator').innerHTML = `Player ${turn == 1 ? "X" : turn == -1 ? "O" : ""} turn`
                 }    
             }, false);
         }
 
-        document.getElementById("reset").addEventListener("click", (event) => {
+        function checkWin(){
+            checkWins = [[0,1,2], [0,3,6], [1,4,7], [3,4,5], [2,5,8], [0,4,8], [6,4,2], [6,7,8]]
+            for(let winCon of checkWins){
+                const a = board_state[winCon[0]]; //x
+                const b = board_state[winCon[1]]; //o
+                const c = board_state[winCon[2]]; //""
+                if(a !== "" || b !== "" || c !== ""){
+                    if(a === b && b === c){
+                        document.getElementById(String(winCon[0])).style.backgroundColor = "red";
+                        document.getElementById(String(winCon[1])).style.backgroundColor = "red";
+                        document.getElementById(String(winCon[2])).style.backgroundColor = "red";
+                        document.getElementById('turnIndicator').innerHTML = `Player ${(turn - 1) % 2 == 0 ? "X" : (turn-1) % 2 == 1 ? "O" : ""} has won!`
+                        return true;
+                        break;
+                    }
+                }
+               
+            }
+            return false;
+        }
+
+        
+
+        document.getElementById("reset").addEventListener("touchend", () => {
             for(let box of boxes){
-                console.log(box);
-                box.innerHTML = "";
-                box.classList.remove()
+                box.innerHTML = '';
+                document.getElementById('turnIndicator').innerHTML = '';
+                turn = 1;
             }
         })
     </script>
