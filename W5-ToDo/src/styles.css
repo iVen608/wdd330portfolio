@@ -91,6 +91,10 @@ main {
     font-size: 8px;
 }
 
+.hidden {
+    display: none;
+}
+
 #create-task {
     border-radius: 15px;
     width: 100%;
