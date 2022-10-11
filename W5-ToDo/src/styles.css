@@ -1,0 +1,145 @@
+:root{
+    --primary: #658C8C;
+    --secondary: #465959;
+    --white: #F2F2F2;
+    --gray: #262626;
+    --black: #0D0D0D;
+}
+
+header {
+    text-align: center;
+}
+
+h1, p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1 {
+    color: var(--primary)
+}
+
+body {
+    margin: 0;
+    background-color: var(--gray)
+}
+
+main {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#todo-container {
+    width: 80%;
+    margin-left: 10%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 25px;
+}
+
+#todo-container > div {
+    background-color: var(--white);
+    box-shadow: 0px 5px 23px 2px var(--black);
+    border-radius: 15px;
+    width: 100%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 20% 60% 20%;
+
+}
+
+#todo-container > div > button {
+    margin-top: 25%;
+    width: 65%;
+    height: 65%;
+    color: var(--secondary);
+    background-color: var(--white);
+}
+
+#todo-container > div > p {
+    text-align: center;
+}
+
+.task {
+    grid-row: 2;
+    grid-column: 2;
+    margin-bottom: 15%;
+    color: var(--black);
+}
+
+.submit {
+    grid-row: 2;
+    margin-left: 25%;
+    border-radius: 20%;
+    border: 2px var(--primary) solid;
+}
+
+.remove {
+    grid-row: 2;
+    grid-column: 3;
+    margin-right: 25%;
+    border: none;
+    font-size: 32px;
+}
+
+.timestamp {
+    grid-row: 3;
+    grid-column: 2;
+    color: var(--gray);
+    font-size: 8px;
+}
+
+#create-task {
+    border-radius: 15px;
+    width: 100%;
+    height: 200px;
+    background-color: var(--primary);
+}
+
+input[type="text"]{
+    border: none;
+    width: 80%;
+    margin-left: 9%;
+    margin-top: 10%;
+    height: 32px;
+}
+
+
+#button-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#button-container > div > button {
+    width: 75px;
+    height: 75px;
+    border-radius: 15px;
+    background-color: var(--primary);
+    border: none;
+    color: var(--gray);
+    font-size: 32px;
+}
+
+#button-container > div {
+    width: 60%;
+    height: 85px;
+    position: relative;
+}
+
+#new-button {
+    position: absolute;
+    right: -32.5%;
+}
+
+#filter-button {
+    position: absolute;
+    left: -32.5%;
+}
+
+footer > p {
+    text-align: center;
+}
