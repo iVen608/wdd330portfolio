@@ -41,18 +41,21 @@ main {
 #todo-container > div {
     position: relative;
     overflow: hidden;
-    background-color: var(--white);
+    
     box-shadow: 0px 5px 23px 2px var(--black);
     border-radius: 15px;
     width: 100%;
     height: 50px;
 }
 
+.todo {
+    background-color: var(--white);
+}
+
 #todo-container > div > button {
     height: 25px;
     margin-top: 12.5px;
     color: var(--secondary);
-    background-color: transparent;
 }
 
 #todo-container > div > div {
@@ -89,6 +92,19 @@ main {
 }
 
 .completed {
+    background-color: var(--gray);
+}
+
+.completed > .submit {
+    background-color: var(--primary);
+}
+
+.completed > .remove {
+    background-color: transparent;
+}
+
+.completed > div > p {
+    color: var(--white);
     text-decoration: line-through;
 }
 
