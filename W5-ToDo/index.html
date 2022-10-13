@@ -15,9 +15,10 @@
         <section id="todo-container">
             <div>
                 <button type="button" class="submit"></button>
-                <p class="task">Pick up grocieres</p>
+                <div>
+                    <p class="task">Pick up grocieres</p>
+                </div>
                 <button type="button" class="remove">X</button>
-                <p class="timestamp">06/15/2022 15:22PM</p>
             </div>
             <div></div>
             <div></div>
@@ -25,22 +26,18 @@
             <div></div>
             <div></div>
         </section>
-        <section id="button-container">
-            <div>
-                
-                <button type="button" id="filter-button">F</button>
-                <button type="button" id="new-button">+</button>
-                <div id="create-task" class="hidden">
-                    <label>
-                        <input type="text" placeholder="Reminder title">
-                    </label>
-                </div>
-            </div>
-            
+        <section id="filter-container">
         </section>
     </main>
     <footer>
-        <p>&copy;David</p>
+        <section id="task-create-container">
+            <button type="button" id="new-button">+</button>
+            <label>
+                <input type="text" placeholder="Reminder title">
+            </label>
+            
+            
+        </section>
     </footer>
     <script src="main.js" type="module"></script>
 </body>
