@@ -10,6 +10,7 @@ const links = [
     {label: "Week 3 Chapter 14.3 Cat in a Hat", link: "W3-14-3-Code/index.html"},
     {label: "Week 3 Notes", link: "week3Notes/index.html"},
     {label: "Week 4 Notes", link: "week4Notes/index.html"},
+    {label: "Week 5 Notes", link: "week5Notes/index.html"},
 ]
 var list_container = document.getElementById("list-container");
 for (let i = 0; i < links.length; i++){
