@@ -124,12 +124,17 @@ input[type="text"]{
 }
 
 #filter-container{
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     margin-top: 25px;
     padding: 10px;
     height: 40px;
     border-radius: 15px;
-    background-color: var(--secondary);
+    background-color: var(--white);
+}
+
+#tracker {
+    line-height: 10px;
 }
 
 #filter-container > button {
@@ -143,7 +148,7 @@ input[type="text"]{
 }
 
 .selected {
-    border-color: var(--black);
+    border: 2px solid var(--primary);
     border-radius: 5px;
 }
 
