@@ -39,4 +39,21 @@ export default class utilities{
             todo.classList.add("completed")
         }
     }
+    updateCounter(x){
+        const plural = x > 1 ? "s" : "";
+        document.getElementById("tracker").textContent = `${x} item${plural} left`;
+    }
+    removeList(){
+        document.getElementById(this.parentId).innerHTML = '';
+    }
+    selectButton(value){
+        const filter_buttons = document.querySelector("#filter-container").getElementsByTagName("button"); 
+        for(let button of filter_buttons){
+            if(button.value === value && !button.classList.contains("selected")){
+                button.classList.add("selected")
+            } else if (button.classList.contains("selected")) {
+                button.classList.remove("selected");
+            }
+        }
+    }
 }

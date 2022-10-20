@@ -27,4 +27,17 @@ export default class ToDos{
         }
         return this.list[index].completed;
     }
+    getTotalTasksLeft(){
+        return this.list.filter(x => x.completed === false).length;
+    }
+    getFilteredList(value){
+        if(value === "active"){
+            return this.list.filter(x => x.completed === false);
+        }else if(value === "completed"){
+            return this.list.filter(x => x.completed === true);
+        }else{
+            return this.list;
+        }
+
+    }
 }

@@ -123,6 +123,30 @@ input[type="text"]{
     height: 48px;
 }
 
+#filter-container{
+    display: flex;
+    margin-top: 25px;
+    padding: 10px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: var(--secondary);
+}
+
+#filter-container > button {
+    background-color: transparent;
+    margin-left: 5px;
+}
+
+#filter-container > button:not(.selected){
+    background-color: transparent;
+    border: none
+}
+
+.selected {
+    border-color: var(--black);
+    border-radius: 5px;
+}
+
 
 #task-create-container {
     position: relative;
