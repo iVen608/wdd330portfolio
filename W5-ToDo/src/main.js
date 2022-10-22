@@ -1,17 +1,11 @@
 import ls from "./ls.js";
 import ToDos from "./ToDos.js";
 import utilities from "./utilities.js";
+
 const storageKey = "todos"
 const lsHanlder = new ls(storageKey);
 const ToDosHandler = new ToDos("todo-container");
 const utilitiesHandler = new utilities("todo-container");
-if(lsHanlder.getSavedItems() === null){
-    lsHanlder.setSavedItems([]);
-}
-
-const saved = lsHanlder.getSavedItems();
-ToDosHandler.setToDos(saved);
-console.log(saved);
 
 function bindRemoveEvent(id){
     const div = document.getElementById(String(id));
@@ -45,17 +39,17 @@ function renderView(list){
 
 document.getElementById("new-button").addEventListener("touchend", (e) => {
     const name = document.getElementById("new-reminder").value;
-    utilitiesHandler.updateCounter(ToDosHandler.getTotalTasksLeft());
+    
     if(name === ""){
         return;
     }
     const timestamp = Date.now();
     ToDosHandler.addToDo(name, timestamp);
-    console.log(ToDosHandler.getToDos());
     lsHanlder.setSavedItems(ToDosHandler.getToDos());
     utilitiesHandler.createView(name, timestamp);
     bindRemoveEvent(timestamp);
     bindCompleteEvent(timestamp);
+    utilitiesHandler.updateCounter(ToDosHandler.getTotalTasksLeft());
     document.getElementById("new-reminder").value = "";
 }, false);
 
@@ -73,6 +67,14 @@ for(let button of filter_buttons){
 }
 
 window.addEventListener("load", () => {
+    
+    if(lsHanlder.getSavedItems() === null){
+        lsHanlder.setSavedItems([]);
+    }
+
+    const saved = lsHanlder.getSavedItems();
+    ToDosHandler.setToDos(saved);
+    console.log(saved);
     renderView(ToDosHandler.getToDos());
   });
 
