@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Notes Compiler</h1>
+    <textarea id="noteContent" cols="50" rows="4"></textarea>
+    <label for="code">Code:
+        <input type="checkbox" id="codeClass" name="code">
+    </label>
+    <label for="header">h3:
+        <input type="checkbox" id="header" name="header">
+    </label>
+    <button type="button" id="addNote">Add</button>
+    <button type="button" id="submit">Output</button>
+    <div id="output"></div>
+    <script>
+        function appendNote(){
+            let notes = [];
+            return function(note="", codeClass=false, headerNote=false){
+                if(note !== ""){
+                    note = codeClass === true ? "#"+ note : headerNote === true ? "!" + note : note;
+                    notes.push(note);
+                }
+                return JSON.stringify(notes);
+            }
+        }
+        window.addEventListener("load", () => {
+            const noteBook = appendNote();
+            let noteConent = document.getElementById("noteContent");
+            let codeClassElement = document.getElementById("codeClass");
+            let headerNoteElement = document.getElementById("header");
+            document.getElementById("addNote").addEventListener("click", (e)=>{
+                noteBook(noteConent.value, codeClassElement.checked, headerNoteElement.checked);
+                noteConent.value = "";
+                codeClassElement.checked = false;
+                headerNoteElement.checked = false;
+            }, false);
+            document.getElementById("submit").addEventListener("click", (e)=>{
+                document.getElementById("output").innerText = noteBook();
+            }, false);
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import notes from "../notes/week5notesArray.js";
+import notes from "../notes/week6notesArray.js";
 import notesCompiler from "../src/notesCompiler.js";
 
 const notesHanlder = new notesCompiler();
