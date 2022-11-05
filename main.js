@@ -13,6 +13,7 @@ const links = [
     {label: "Week 5 Notes", link: "week5Notes/index.html"},
     {label: "Week 5 ToDos", link: "W5-ToDo/index.html"},
     {label: "Week 6 Notes", link: "week6Notes/index.html"},
+    {label: "Week 7 Notes", link: "week7Notes/index.html"},
     {label: "Notes Formatter", link: "noteFormatCreator/index.html"},
 ]
 var list_container = document.getElementById("list-container");
