@@ -7,8 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <img id="img">
     <script>
-      fetch('https://swapi.dev/api/planets?page=2').then((response) => response.json()).then((data) => console.log(data));  
+      fetch('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ').then((response) => response.json()).then((data) => document.getElementById("img").src = data.url);  
     </script>
 
 </body>
