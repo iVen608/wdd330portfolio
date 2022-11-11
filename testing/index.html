@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />  
     <title>Document</title>
 </head>
 <body>
-    <img id="img">
+  <!--<div id="title">
+    <h1>Title</h1>
+    <div class="border-style border-top border-left move-top-small"></div>
+    <div class="border-style border-top border-left reverse move-left-small"></div>
+    <div class="border-style border-bottom border-right"></div>
+    <div class="border-style border-bottom border-right reverse"></div>
+  </div>-->
+  <div id="title">
+    <h1>Title</h1>
+    <div class="border-style border-top border-left move-top-small rotate-small-positive"></div>
+    <div class="border-style border-bottom border-right flip-item rotate-small-negative"></div>
+    <div class="border-style border-bottom border-middle border-wide"></div>
+  </div>
+  <img id="backgroundImage">
+  
+  
+  
+    
     <script>
-      fetch('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ').then((response) => response.json()).then((data) => document.getElementById("img").src = data.url);  
+      fetch('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ').then((response) => response.json()).then((data) => document.getElementById("backgroundImage").src = data.hdurl);
+      //fetch('https://api.openweathermap.org/data/2.5/weather?lat=33.3703&lon=-112.5838&units=imperial&appid=942be51159fb8974885b140d119e7493').then((response) => response.json()).then((data) => console.log(data));  
     </script>
 
 </body>
