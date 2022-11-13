@@ -17,4 +17,9 @@ export default class notesCompiler {
         })
          
     }
+    addNotesText(output){
+        fetch("../notes/week8notes.txt").then((response) => response.text()).then((data) => {
+           this.addNotes(data.split(','), output);  
+        });
+    }
 }
