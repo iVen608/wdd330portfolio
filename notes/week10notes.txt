@@ -1,0 +1,37 @@
+!Client-side form validation??
+Client-side form validation - validate data before being processed to a sever, data is correct format, type, etc??
+Assists user in fixing the correct data fields with helpful notifications??
+Form validation – ensuring data in form is in the correct format??
+Two methods to validate data: ??
+HTML built-in – uses HTML form validation attributes??
+JS – validation based on code which is customizable??
+1 – HTML built-in attributes: ??
+#required – specifies if the element is required for the form to be submitted??
+#minlength / maxlength – specifies min/max length of data of string??
+#min/max – specifies boundaries of int inputs??
+#type – specifies number/email/password etc??
+#pattern – specifies regex pattern??
+When an input is valid, can be styled through the :valid CSS selector, and form will be submitted??
+When an input is invalid, can be styled through the :invalid CSS selector, and browser will not submit form??
+2 –  JS Validation with API??
+Most browsers support Constraint Validation API which works on the following form elements: buttons, fieldset, input, output, select, and textarea??
+The API has several properties which are: ??
+#validationMessage – returns specified string if not valid, returns blank string if valid??
+#validity – returns a validityState object which can be used to test for patternMismatch (test regex), tooLong(longer than specified amount), tooShort(opposite of tooLong), rangeOverflow(similar to max in HTML), rangeUnderflow(similar to min), typeMismatch(if element is wrong type), valid??
+#willValidate – returns true if the element will be validated when form is completed??
+The API has the following methods: ??
+#checkValidity – returns true if there are no validity errors??
+#reportValidity – reports invalid, helpful in preventing forms with preventDefault() in submit??
+#setCustomValidity – set custom message as parameter that can be useful for telling the user which form element and why is invalid
+2 – JS Validation without API??
+You can create your own patterns for emails using regex, and check for min/max and data types with try/catch blocks. However the important aspect if ensuring the user experience is easy for the user and that the data are transmitted correctly??
+!Fetch API??
+A basic fetch can be completed through fetch(url).then().then()??
+A second parameter can be set to change the method, mode, cache, credentials, headers, redirect and referrerPolicy and body??
+To upload JSOn data, you must stringify it first??
+Uploading a file will require a file input type??
+Instead of sending the URL, a request object can be created instead??
+#const req = new Request(path, {method: x, headers..}); fetch(req).then..; ??
+This allows for a similar request to be copied multiple times as the request can be used multiple??
+Headers allow you to customize the headers object through content type, length, and other properties??
+Response objects are returned with fetch() which can be returned to check for status errors through response.status and response.statusText, and to check if can proceed through response.ok??
