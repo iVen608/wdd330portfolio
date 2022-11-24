@@ -33,26 +33,42 @@ async function loadScreen(){
 }
 
 window.addEventListener("load", (e) => {
-    loadScreen();
+    //loadScreen();
     
 });
 const menuWheel = document.getElementById("menuWheel");
-
+const menuIcon = document.getElementById("menu-icon");
 
 document.getElementById("menuButton").addEventListener("click", e => {
-    if(menuWheel.classList.contains('visible')){
-        console.log("a");
+    if(menuWheel.classList.contains('visible') && menuIcon.classList.contains('x')){
         menuWheel.classList.remove('visible');
+        setTimeout(() =>{menuIcon.classList.remove('x');}, 500)
         menuWheel.classList.add("invisible");
     }else if(menuWheel.classList.contains('invisible')){
         menuWheel.classList.add('visible');
         menuWheel.classList.remove("invisible");
+        setTimeout(() =>{menuIcon.classList.add('x');}, 500)
     }else {
         menuWheel.classList.add('visible');
+        setTimeout(() =>{menuIcon.classList.add('x');}, 500)
     }
 });
 
 
 //Change color scheme
-document.documentElement.style.setProperty('--color-selection', 'orange');
+document.documentElement.style.setProperty('--color-selection', '#301934');
+const listContainer = document.getElementById("listContainer");
+function colorPalette(){
+    for(let r = 0; r < 5; r++){
+        for(let g = 0; g < 5; g++){
+            const div = document.createElement("div");
+                div.style.backgroundColor = `rgb(${r*51}, ${g*51}, ${g*51})`;
+                const hexLabel = document.createElement("p");
+                hexLabel.textContent = `${r*51}, ${g*51}, ${g*51}`;
+                div.appendChild(hexLabel);
+                listContainer.appendChild(div);
+        }
+    }
+};
 
+colorPalette();
