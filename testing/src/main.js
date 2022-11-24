@@ -71,4 +71,36 @@ function colorPalette(){
     }
 };
 
-colorPalette();
+document.querySelectorAll(".color-palette").forEach((element) => {
+    element.style.backgroundColor = element.dataset.color;
+    element.addEventListener("click", (e) => {
+        document.getElementById("color-selected").textContent = `Color selected: ${element.dataset.color.substring(0,1).toUpperCase() + element.dataset.color.slice(1)}`;
+        document.documentElement.style.setProperty('--color-selection', element.dataset.color);
+    }, false)
+    
+})
+let timeout = 0;
+let clock_timer = 0;
+document.getElementById("timer").addEventListener('change', (e) =>{
+    document.getElementById("timer").style.display = 'none';
+    document.getElementById('cancel-timer').style.display = 'block';
+    let i = parseInt(e.target.value);
+    clock_timer = setInterval(() => {
+        const total_seconds = (i / 1000);
+        const minutes = Math.floor(total_seconds / 60);
+        const seconds = total_seconds - minutes * 60;
+        i -= 1000;
+        if(i < 0){
+            i = 0;
+    }
+        document.getElementById("clock-text").textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+    }, 1000);
+    timeout = setTimeout(() => {console.log("apples"); clearInterval(clock_timer); document.getElementById("timer").style.display = 'block'}, i + 1000)
+}
+, false);
+
+document.getElementById('cancel-timer').addEventListener("click",(e) => {
+    clearInterval(clock_timer);
+    clearTimeout(timeout);
+}, false)
+//colorPalette();

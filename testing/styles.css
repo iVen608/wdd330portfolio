@@ -32,9 +32,10 @@ main {
     height: 100vh;
     position: relative;
     display: flex;
+    margin-left: 20vw;
     align-items: center;
     flex-direction: column;
-    width: 100vw;
+    width: 60vw;
 }
 
 #title > h1 {
@@ -322,3 +323,22 @@ svg > circle {
     fill: white;
 }
 
+#color-palette-holder {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(calc(3), 30%);
+    column-gap: 3%;
+    row-gap: 5px;
+    grid-template-rows: repeat(calc(3), 25px);
+}
+
+#color-palette-holder > button {
+    width: 100%;
+    height: 25px;
+    border-radius: 15px;
+    border: none;
+}
+
+h3, p {
+    color: white;
+}
