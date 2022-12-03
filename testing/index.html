@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" />  
-    <title>Document</title>
+    <link rel="stylesheet" href="./styles/styles.css" />  
+    <title>Home</title>
 </head>
 <body>
   <!--<div id="title">
@@ -28,55 +28,25 @@
       <div id="listContainer">
         
       </div>
-      <h3>Color Palette</h3>
-      <div id="color-palette-holder">
-        <button class="color-palette" data-color="blue"></button>
-        <button class="color-palette" data-color="orange"></button>
-        <button class="color-palette" data-color="red"></button>
-        <button class="color-palette" data-color="green"></button>
-        <button class="color-palette" data-color="pink"></button>
-        <button class="color-palette" data-color="purple"></button>
-        <button class="color-palette" data-color="teal"></button>
-        <button class="color-palette" data-color="limegreen"></button>
-        <button class="color-palette" data-color="cyan"></button>
-      </div>
-      <p id="color-selected">Color selected:</p>
-      <select name="timer" id="timer">
-        <option value="10000" selected>Select time</option>
-        <option value="10000">10 seconds</option>
-        <option value="300000">5 minutes</option>
-        <option value="600000">10 minutes</option>
-        <option value="900000">15 minutes</option>
-        <option value="1200000">20 minutes</option>
-        <option value="1500000">25 minutes</option>
-        <option value="1800000">30 minutes</option>
-        <option value="2100000">35 minutes</option>
-        <option value="2400000">40 minutes</option>
-        <option value="2700000">45 minutes</option>
-        <option value="3600000">60 minutes</option>
-      </select>
-      <p id="clock-text">x</p>
-      <button id="cancel-timer" style="display: none;">Cancel</button>
+      
+      
       <div id="menuWheel" class="animateWheelExpand">
         <div></div>
-        <button>+</button>
-        <button>B</button>
-        <button>S</button>
-        <svg width="50px" height="50px" id="settings-icon">
+        <a href="./view/settings.html"><svg width="50px" height="50px" id="settings-icon">
             <rect x="20" y="0" width="10" height="50" rx="5" ry="5" fill="gray" transform="rotate(90, 25, 25)"/>
             <rect x="20" y="0" width="10" height="50" rx="5" ry="5" fill="gray" transform="rotate(45, 25, 25)"/>
             <rect x="20" y="0" width="10" height="50" rx="5" ry="5" fill="gray" transform="rotate(135, 25, 25)"/>
             <rect x="20" y="0" width="10" height="50" rx="5" ry="5" fill="gray"/>
             <circle cx="25" cy="25" r="15" stroke="gray" stroke-width="4" fill="white" /> 
-        </svg>
-        <svg width="50px" height="50px" id="create-icon">
+        </svg></a>
+        <a href="./view/create.html"><svg width="50px" height="50px" id="create-icon">
           <rect x="20" y="0" width="10" height="50" rx="5" ry="5" fill="gray" transform="rotate(90, 25, 25)"/>
           <rect x="20" y="0" width="10" height="50" rx="5" ry="5" fill="gray"/>
-        </svg>
-        <svg width="50px" height="50px" id="break-icon">
+        </svg></a>
+        <a href="./view/break.html"><svg width="50px" height="50px" id="break-icon">
           <rect x="10" y="7" width="30" height="35" rx="5" ry="5" stroke="gray" stroke-width="5" fill="white"/>
           <rect x="15" y="0" width="10" height="15" rx="5" ry="5" fill="gray"/>
-        </svg>
+        </svg></a>
       </div>
       <div id="menuWheelHolder">
         <button id="menuButton">M</button>

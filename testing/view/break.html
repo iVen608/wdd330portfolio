@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css" />  
+    <title>Settings</title>
+</head>
+<body>
+  <main>
+    <div id="title">
+      <h1 id="titleText">Study Break</h1>
+      <p class="small-text">Need a study break idea? Here's one below:</p>
+      <p id="break-suggestion"></p>
+      <svg width="50" height="50" id="refresh-icon" role="button">
+        <circle cx="25" cy="25" r="17"/>
+        <rect x="23" y="23" width="25" height="30"></rect>
+        <polygon points="25,23 50,23 37,37 25,23" rx="5" ry="5"/>
+      </svg>
+      <div id="menuWheelHolder">
+        <a href="../index.html"></a>
+        <svg width="50px" height="50px" id="menu-icon">
+          <rect x="10" y="20" width="30" height="25" rx="5" ry="5"/>
+          <polygon points="0,25 50,25 25,0 25,0" rx="5" ry="5"/>
+        </svg>
+      </div>
+    </div>
+    
+    <img id="backgroundImage">
+    
+  </main>
+    <script>
+            //fetch('https://api.openweathermap.org/data/2.5/weather?lat=33.3703&lon=-112.5838&units=imperial&appid=942be51159fb8974885b140d119e7493').then((response) => response.json()).then((data) => console.log(data));  
+    </script>
+  <script src="../src/break-index.js" type="module"></script>
+</body>
+</html>

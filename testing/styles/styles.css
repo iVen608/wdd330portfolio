@@ -13,6 +13,18 @@ main {
     overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: monaco, "Courier New", monospace;
+}
+
+p, li {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.small-text {
+    font-size: 14px;
+}
+
 #imgContainer{
     position: fixed;
     width: 99vw;
@@ -123,19 +135,19 @@ main {
     transition: background-color 1s, outline 1s, box-shadow 1s;
 }
 
-#menuWheel button:nth-child(2){
+#menuWheel a:nth-child(3){
     grid-column: 22;
     grid-row: 3;
     
 }
 
-#menuWheel button:nth-child(3){
+#menuWheel a:nth-child(4){
     grid-column: 9;
     grid-row: 11;
     
 }
 
-#menuWheel button:nth-child(4){
+#menuWheel a:nth-child(2){
     grid-column: 3;
     grid-row: 25;
 }
@@ -316,7 +328,7 @@ svg > rect {
 }
 
 svg > circle {
-    stroke: var(--color-selection)
+    stroke: var(--color-selection);
 }
 
 #break-icon rect:nth-child(1){
@@ -341,4 +353,50 @@ svg > circle {
 
 h3, p {
     color: white;
+}
+
+polygon {
+    fill: var(--color-selection);
+}
+
+#menuWheelHolder > a {
+    width: 50px;
+    height: 50px;
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+}
+
+#refresh-icon {
+    background-color: white;
+    border-radius: 25px;
+    margin-top: 15px;
+}
+
+#refresh-icon circle:nth-child(1){
+    fill: none;
+    stroke-width: 7px;
+    stroke: black;
+}
+
+#refresh-icon rect:nth-child(2){
+    fill: white;
+    transform: rotate(30deg) translate(10px, -22px);
+}
+
+#refresh-icon > polygon {
+    fill: black;
+    transform: rotate(30deg) translate(10px, -22px);
+}
+
+#refresh-icon:hover{
+    animation-name: rotateRefresh;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes rotateRefresh{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
 }
