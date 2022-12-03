@@ -1,11 +1,16 @@
+import Utilities from "./utilities.js";
+
 export default class FocusController{
     constructor(){
         this.user;
+        this.utilities = new Utilities();
         this.timeout;
         this.clock_timer;
     }
     //Initializes settings controller
     init(){
+        this.user = this.utilities.getUser();
+        this.utilities.updateColor(this.user.color);
         this.addEvents();
     }
     addEvents(){

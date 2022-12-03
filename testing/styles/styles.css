@@ -4,7 +4,7 @@ body {
 }
 
 :root {
-    --color-selection: red;
+    --color-selection: black;
 }
 
 main {
@@ -37,6 +37,24 @@ p, li {
     width: 100vw;
     height: 100vh;
     object-fit:fill;
+}
+
+#timer-circle > circle{
+    stroke-dasharray: 950px;
+    stroke-width: 5px;
+    animation-name: timerReduce; 
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+    transform: rotateY(-180deg) rotateZ(-90deg) translate(-300px, -300px);
+    fill: none;
+    stroke: var(--color-selection);
+}
+
+@keyframes timerReduce{
+    0%{stroke-dasharray: 950px 0px;}
+    100%{stroke-dasharray: 0px 950px;}
 }
 
 #title {
@@ -204,26 +222,26 @@ p, li {
 
 .visible {
     animation-name: rotateWheelBack;
-    animation-duration: 1s;
+    animation-duration: .75s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
 
 .invisible {
     animation-name: rotateWheel;
-    animation-duration: 1s;
+    animation-duration: .75s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 }
 
 @keyframes rotateWheel {
-    0% {transform: /*translateX(0px)*/ rotate(0deg) ;}
-    100% {transform: /*translateX(300px)*/ rotate(145deg) ;}
+    0% {transform: rotate(0deg) ;}
+    100% {transform: rotate(145deg) ;}
 }
 
 @keyframes rotateWheelBack {
-    0% {transform: /*translateX(300px)*/ rotate(145deg) ;}
-    100% {transform: /*translateX(0px)*/ rotate(0deg) ;}
+    0% {transform: rotate(145deg) ;}
+    100% {transform: rotate(0deg) ;}
     
 }
 .chip {
