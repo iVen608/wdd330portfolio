@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: monaco, "Courier New", monospace;
 }
 
-p, li {
+p, li, label {
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
@@ -126,8 +126,8 @@ p, li {
     transform-origin: 230px 253px;
     overflow: hidden;
     transform: translateX(300px) rotate(90deg);
-    width: 300px;
-    height: 300px;
+    width: 340px;
+    height: 340px;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -154,36 +154,38 @@ p, li {
 }
 
 #menuWheel a:nth-child(3){
-    grid-column: 22;
-    grid-row: 3;
+    grid-column: 24;
+    grid-row: 5;
     
 }
 
 #menuWheel a:nth-child(4){
-    grid-column: 9;
-    grid-row: 11;
+    grid-column: 11;
+    grid-row: 13;
     
 }
 
 #menuWheel a:nth-child(2){
-    grid-column: 3;
-    grid-row: 25;
+    grid-column: 5;
+    grid-row: 27;
 }
 
 #menuWheel svg:nth-child(5){
-    grid-column: 3;
-    grid-row: 25;
+    grid-column: 5;
+    grid-row: 27;
 }
 
 #menuWheel svg:nth-child(6){
-    grid-column: 22;
-    grid-row: 3;
+    grid-column: 24;
+    grid-row: 5;
 }
 
 #menuWheel svg:nth-child(7){
-    grid-column: 9;
-    grid-row: 11;
+    grid-column: 11;
+    grid-row: 13;
 }
+
+
 
 #menuWheel > .line {
     width: 180px;
@@ -193,11 +195,6 @@ p, li {
     border-bottom: 5px solid yellow;
     box-shadow: 0 0 10px yellow;
     border-radius: 0;
-}
-#menuWheel div:nth-child(5){
-    grid-column: 7;
-    grid-row: 27;
-    transform: rotate(-7deg);
 }
 
 
@@ -213,11 +210,12 @@ p, li {
     box-shadow: 0 0 30px transparent, inset 0 0 30px transparent;
     border-radius: 300px;
     background-color: transparent;
-    border: 100px solid white;  
+    border: 100px solid black;  
     width: 300px;
     height: 300px;
-    grid-row: 1;
-    grid-column: 1;
+    grid-row: 3;
+    grid-column: 3;
+    box-shadow: 0px 0px 25px var(--color-selection), inset 0px 0px 25px var(--color-selection);
 }
 
 .visible {
@@ -236,11 +234,11 @@ p, li {
 
 @keyframes rotateWheel {
     0% {transform: rotate(0deg) ;}
-    100% {transform: rotate(145deg) ;}
+    100% {transform: rotate(145deg) translateX(-110px) translateY(-13px);}
 }
 
 @keyframes rotateWheelBack {
-    0% {transform: rotate(145deg) ;}
+    0% {transform: rotate(145deg) translateX(-110px) translateY(-13px);}
     100% {transform: rotate(0deg) ;}
     
 }
@@ -248,7 +246,7 @@ p, li {
     border-radius: 15px;
     background-color: black;
     color: white;
-    transition: background-color .5s ease;
+    transition: background-color .25s ease, color .25s ease;
 }
 
 .button-size-medium {
@@ -264,9 +262,9 @@ p, li {
 
 .selected {
     background-color: white;
-    color: black;
+    color: var(--color-selection);
     border: none;
-    transition: background-color .5s ease, color .5s ease;
+    transition: background-color .25s ease, color .25s ease;
 }
 
 .selected:hover {
@@ -350,7 +348,7 @@ svg > circle {
 }
 
 #break-icon rect:nth-child(1){
-    fill: white;
+    fill: black;
 }
 
 #color-palette-holder {
@@ -386,24 +384,25 @@ polygon {
 }
 
 #refresh-icon {
-    background-color: white;
     border-radius: 25px;
     margin-top: 15px;
+    border: 2px solid var(--color-selection);
 }
 
 #refresh-icon circle:nth-child(1){
     fill: none;
-    stroke-width: 7px;
-    stroke: black;
+    stroke-width: 5px;
+    stroke-dasharray: 0px 20px 65px;
+    stroke: var(--color-selection);
 }
 
 #refresh-icon rect:nth-child(2){
-    fill: white;
+    fill: none;
     transform: rotate(30deg) translate(10px, -22px);
 }
 
 #refresh-icon > polygon {
-    fill: black;
+    fill: var(--color-selection);
     transform: rotate(30deg) translate(10px, -22px);
 }
 
@@ -414,7 +413,112 @@ polygon {
     animation-fill-mode: forwards;
 }
 
+
 @keyframes rotateRefresh{
     0% {transform: rotate(0deg);}
     100% {transform: rotate(360deg);}
+}
+/***********************************
+Atomic CSS classes for general use
+***********************************/
+
+.color-scheme-border {
+    border-bottom: 2px solid var(--color-selection);
+    border-top: 2px solid var(--color-selection);
+    box-shadow: 0px 0px 25px var(--color-selection), inset 0px 0px 25px var(--color-selection);
+}
+
+.hidden {
+    display: none;
+}
+
+.black-background {
+    background-color: rgba(0,0,0,1);
+}
+
+.white-text {
+    color: white;
+}
+
+.small-padding {
+    padding: 5px;
+}
+
+.medium-padding {
+    padding: 25px;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.col-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.row-3 {
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.rounded-corners {
+    border-radius: 15px;
+}
+
+.eighty-width{
+    width: 80%;
+    max-width: 300px;
+}
+
+.hundred-width{
+    width: 100%;
+    max-width: 300px;
+}
+
+.small-margin-top {
+    margin-top: 25px;
+}
+
+.medium-margin-top {
+    margin-top: 50px;
+}
+
+.medium-height{
+    height: 50px;
+}
+
+.gray {
+    background-color: gray;
+}
+
+.circle-sides {
+    border-radius: 500px;
+}
+
+
+.color-scheme-text {
+    color: var(--color-selection)
+}
+
+.centered-text{
+    text-align: center;
+}
+
+.remove-border {
+    border: none;
+}
+
+.small-border-bottom-white {
+    border-bottom: 2px solid white;
+}
+
+.center-in-div {
+    margin-right: 0;
 }

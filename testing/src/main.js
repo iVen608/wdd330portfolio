@@ -27,7 +27,7 @@ async function loadScreen(){
     const nasaHolder = new nasa(nasaResults);
     user = utilities.getUser();
     utilities.updateColor(user.color);
-    //console.log(nasaHolder.getUrl());
+    console.log(nasaHolder.getUrl());
     document.querySelectorAll("button").forEach((element) => {
         element.addEventListener("click", (e) => {
           element.classList.add("selected");
@@ -35,6 +35,22 @@ async function loadScreen(){
     });
     updateTime();
     window.setInterval(updateTime, 6000);
+    user.todo.forEach((element) => {
+        const div = document.createElement("div");
+        div.classList.add( 'black-background', 'color-scheme-border', 'hundred-width', 'rounded-corners', 'small-padding', 'small-margin-top');
+        document.getElementById("listContainer").appendChild(div);
+        const p = document.createElement("p");
+        p.textContent = element.title;
+        p.classList.add('centered-text');
+        div.appendChild(p);
+    });
+    user.habit.forEach((element) => {
+        const div = document.createElement("div");
+        document.getElementById("listContainer").appendChild(div);
+        const p = document.createElement("p");
+        p.textContent = element.habit;
+        div.appendChild(p);
+    })
 }
 
 window.addEventListener("load", (e) => {

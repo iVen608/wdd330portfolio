@@ -1,0 +1,19 @@
+@import './styles.css';
+
+#alert-container {
+    opacity: 0;
+}
+
+.alert-popup {
+    animation-name: notify;
+    animation-delay: .25s;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes notify {
+    0%{margin-top: 70px; opacity: 0}
+    20%{margin-top: 15px; opacity: 1}
+    80%{margin-top: 15px; opacity: 1}
+    100%{margin-top: 70px; opacity: 0}
+}

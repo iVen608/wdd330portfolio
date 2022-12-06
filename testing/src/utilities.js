@@ -13,13 +13,12 @@ export default class Utilities{
             user = {
                 position: {lat: '0', lon: '0'},
                 name: '',
-                color: '',
+                color: 'blue',
                 todo: [],
                 habit: [],
             }
             this.storage.setSavedItems(user);
         }
-        console.log(user);
         return user;
     }
     saveUser(user){
@@ -27,5 +26,17 @@ export default class Utilities{
     }
     updateColor(color){
         document.documentElement.style.setProperty('--color-selection', color);
+    }
+    addClass(element, className){
+        if(element.classList.contains(className)){
+            return;
+        }
+        element.classList.add(className);
+    }
+    removeClass(element, className){
+        if(!element.classList.contains(className)){
+            return;
+        }
+        element.classList.remove(className);
     }
 }

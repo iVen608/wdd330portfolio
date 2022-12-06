@@ -11,13 +11,15 @@
   <main>
     <div id="title">
       <h1 id="titleText">Study Break</h1>
-      <p class="small-text">Need a study break idea? Here's one below:</p>
-      <p id="break-suggestion"></p>
-      <svg width="50" height="50" id="refresh-icon" role="button">
-        <circle cx="25" cy="25" r="17"/>
-        <rect x="23" y="23" width="25" height="30"></rect>
-        <polygon points="25,23 50,23 37,37 25,23" rx="5" ry="5"/>
-      </svg>
+      <div id="suggestion-container" class="flex flex-column eighty-width black-background rounded-corners medium-padding">
+        <p class="small-text">Need a study break idea? Here's one below:</p>
+        <p id="break-suggestion"></p>
+      </div>
+        <svg width="50" height="50" id="refresh-icon" role="button" class="center-in-div">
+          <circle cx="25" cy="25" r="17"/>
+          <polygon points="25,20 45,20 35,34 25,20" rx="5" ry="5"/>
+        </svg>
+      
       <div id="menuWheelHolder">
         <a href="../index.html"></a>
         <svg width="50px" height="50px" id="menu-icon">
