@@ -19,6 +19,21 @@ export default class SettingsController{
         if(this.user.name !== ''){
             document.getElementById("name-input").value = this.user.name;
         }
+        try{
+            const coords = await this.utilities.getGeoLocation();
+            //units can either be imperial, standard, or metric
+            const units = 'metric';
+            const url = this.utilities.buildTemperatureUrl(coords.coords.latitude, coords.coords.longitude, units);
+            const lat = coords.coords.latitude;
+            const lon = coords.coords.longitude;
+            const tempResults = await this.jsonCall.getResults('https://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon=' + lon + '&units=' + units + '&appid=942be51159fb8974885b140d119e7493');
+            console.log(tempResults);
+            const displayUnit = units == 'imperial' ? '°F' : units == 'metric' ? '°C' :  'K';
+            this.utilities.displayTemperature(Math.ceil(tempResults.main.temp), displayUnit);
+        }catch(err){
+            console.log(err);
+        }
+        
     }
 
     addEvents(){
@@ -26,6 +41,10 @@ export default class SettingsController{
         //updates user's color preference and saves to local storage
         document.querySelectorAll(".color-palette").forEach((element) => {
             element.style.backgroundColor = element.dataset.color;
+            element.style.backgroundColor = 'white'
+            element.style.borderTop = `2px solid ${element.dataset.color}`;
+            element.style.borderBottom = `2px solid ${element.dataset.color}`;
+            element.style.boxShadow = `0px 0px 50px ${element.dataset.color}, inset 0px 0px 100px ${element.dataset.color}`
             element.addEventListener("click", (e) => {
                 document.getElementById("color-selected").textContent = `Color selected: ${element.dataset.color.substring(0,1).toUpperCase() + element.dataset.color.slice(1)}`;
                 this.utilities.updateColor(element.dataset.color);
@@ -40,6 +59,11 @@ export default class SettingsController{
             this.user.name = inputName;
             this.utilities.saveUser(this.user);
             document.getElementById("color-selected").textContent = "name has been changed";
-        }, false);;
+        }, false);
+
+        document.getElementById("reset-user").addEventListener("click", (e) => {
+            this.user = this.utilities.resetUser();
+            this.init();
+        }, false)
     }
 }

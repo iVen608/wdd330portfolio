@@ -25,8 +25,6 @@ export default class CreateController{
         this.utilities.updateColor(this.user.getColor());
         this.addEvents();
         this.createView.init();
-        const date = new Date(this.user.habit[0].created);
-        console.log(date.getMinutes());
         //const nasaResults = await this.jsonCall.getResults(this.nasaURL);
         //this.utilities.updateImage("backgroundImage", nasaResults.url);
     }
@@ -46,19 +44,31 @@ export default class CreateController{
             const timestamp = Date.now();
             if(this.selectedMenu === 'Habit'){
                 let frequency = 0;
+                const habit = document.getElementById("habitInput").value;
+                if(habit.trim(" ") === ""){
+                    return;
+                }
                 const radios = document.getElementsByName("frequency");
+                let radioCheck = false;
                 radios.forEach((element) => {
                     if(element.checked){
                         frequency = element.value;
+                        radioCheck = true;
                     }
                 });
+                if(radioCheck === false){
+                    return;
+                }
                 const date = new Date();
-                const habit = document.getElementById("habitInput").value;
+                
                 this.habits.addHabit(habit, timestamp, date, frequency);
                 this.user.setHabits(this.habits.getHabits());
                 
             } else {
                 const todo = document.getElementById("todoInput").value;
+                if(todo.trim(" ") === ""){
+                    return;
+                }
                 this.todos.addToDo(todo, timestamp);
                 this.user.setToDos(this.todos.getToDos());
             }

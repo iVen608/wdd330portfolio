@@ -1,8 +1,13 @@
 import ls from "./ls.js";
+import jsonHelper from "./json.js";
 
-export default class Utilities{
+ export default class Utilities{
     constructor(){
         this.storage = new ls('user');
+        this.lat;
+        this.lon;
+        this.tempUrl;
+        this.jsonCall = new jsonHelper();
     }
     updateImage(element, url){
         document.getElementById(element).src = url;
@@ -13,13 +18,18 @@ export default class Utilities{
             user = {
                 position: {lat: '0', lon: '0'},
                 name: '',
-                color: 'blue',
+                focus: 'blue',
+                color: 'red',
                 todo: [],
                 habit: [],
             }
             this.storage.setSavedItems(user);
         }
         return user;
+    }
+    resetUser(){
+        this.storage.deleteSavedItem();
+        return this.getUser();
     }
     saveUser(user){
         this.storage.setSavedItems(user);
@@ -38,5 +48,19 @@ export default class Utilities{
             return;
         }
         element.classList.remove(className);
+    }
+
+    buildTemperatureUrl(lat, lon, units){
+        return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=942be51159fb8974885b140d119e7493'`;
+    }
+
+    displayTemperature(temp ,displayUnit){
+        document.getElementById("tempText").innerHTML = temp + displayUnit;
+    }
+
+    async getGeoLocation(){
+        return new Promise(function(resolve, reject){
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
     }
 }

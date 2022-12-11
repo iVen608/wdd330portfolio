@@ -1,9 +1,10 @@
 export default class User {
-    constructor(color, position, name, todo, habit){
+    constructor(color, position, name, todo, habit, focus){
         this.color = color;
         this.position = position;
         this.name = name;
         this.todo = todo;
+        this.focus = focus;
         this.habit = habit;
     }
     getHabits(){
@@ -23,6 +24,12 @@ export default class User {
     }
     setColor(color){
         this.color = color;
+    }
+    getFocus(){
+        return this.focus;
+    }
+    setFocus(focus){
+        this.focus = focus;
     }
     getPosition(){
         return this.position;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css" />  
+    <link rel="stylesheet" href="../styles/focus.css" />  
     <title>Settings</title>
 </head>
 <body>
@@ -18,6 +18,7 @@
   <main>
     <div id="title">
       <h1 id="titleText">Focus</h1>
+      <p id="focusText"></p>
       <select name="timer" id="timer">
         <option value="10000" selected>Select time</option>
         <option value="10000">10 seconds</option>
@@ -32,11 +33,11 @@
         <option value="2700000">45 minutes</option>
         <option value="3600000">60 minutes</option>
       </select>
-      <p id="clock-text">x</p>
-      <svg width="300" height="300" id="timer-circle">
-        <circle cx="150" cy="150" r="140"/>
+      <p id="clock-text" class="big-text">x</p>
+      <svg class="hidden" width="300" height="300" id="timer-circle">
+        <circle class="" cx="150" cy="150" r="140"/>
       </svg>
-      <button id="cancel-timer" style="display: none;">Cancel</button>
+      <button id="cancel-timer" class="hidden rounded-corners black-background color-scheme-border border-left-none border-right-none white-text">Cancel</button>
       <!--<div class="border-style border-top border-left move-top-small rotate-small-positive"></div>
       <div class="border-style border-bottom border-right flip-item rotate-small-negative"></div>
       <div class="border-style border-bottom border-middle border-wide"></div>-->

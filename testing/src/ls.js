@@ -10,4 +10,7 @@ export default class ls{
         const stringList = JSON.stringify(list);
         localStorage.setItem(this.key, stringList);
     }
+    deleteSavedItem(){
+        localStorage.removeItem(this.key);
+    }
 }

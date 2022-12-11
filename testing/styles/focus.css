@@ -1,0 +1,101 @@
+@import "styles.css";
+
+#timer-circle {
+    position: absolute;
+    top: 80px;
+}
+
+#timer-circle > circle{
+    stroke-dasharray: 880px;
+    stroke-width: 5px;
+    transform: rotateY(-180deg) rotateZ(-90deg) translate(-300px, -300px);
+    fill: none;
+    stroke: var(--color-selection);
+}
+
+.ten-second-timer {
+    animation-name: timerReduce; 
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+.five-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 300s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+.ten-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 600s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+.fifteen-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 900s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+.twenty-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 1200s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+.twenty-five-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 1500s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+.thirty-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 1800s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+.thirty-five-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 2100s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+.fourty-minute-timer {
+    animation-name: timerReduce; 
+    animation-duration: 2400s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+.fourty-five-timer {
+    animation-name: timerReduce; 
+    animation-duration: 2700s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+.one-hour-timer {
+    animation-name: timerReduce; 
+    animation-duration: 3600s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+@keyframes timerReduce{
+    0%{stroke-dasharray: 880px 0px;}
+    100%{stroke-dasharray: 0px 880px;}
+}
