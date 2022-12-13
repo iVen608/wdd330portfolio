@@ -8,13 +8,6 @@
     <title>Settings</title>
 </head>
 <body>
-  <!--<div id="title">
-    <h1>Title</h1>
-    <div class="border-style border-top border-left move-top-small"></div>
-    <div class="border-style border-top border-left reverse move-left-small"></div>
-    <div class="border-style border-bottom border-right"></div>
-    <div class="border-style border-bottom border-right reverse"></div>
-  </div>-->
   <main>
     <div id="title">
       <h1 id="titleText">Focus</h1>
@@ -33,14 +26,16 @@
         <option value="2700000">45 minutes</option>
         <option value="3600000">60 minutes</option>
       </select>
-      <p id="clock-text" class="big-text">x</p>
+      <p id="clock-text" class="big-text medium-margin-top"></p>
       <svg class="hidden" width="300" height="300" id="timer-circle">
         <circle class="" cx="150" cy="150" r="140"/>
       </svg>
-      <button id="cancel-timer" class="hidden rounded-corners black-background color-scheme-border border-left-none border-right-none white-text">Cancel</button>
-      <!--<div class="border-style border-top border-left move-top-small rotate-small-positive"></div>
-      <div class="border-style border-bottom border-right flip-item rotate-small-negative"></div>
-      <div class="border-style border-bottom border-middle border-wide"></div>-->
+      <button id="cancel-timer" class="small-margin-top z-index-1 hidden rounded-corners black-background color-scheme-border border-left-none border-right-none white-text">Cancel</button>
+      <div id="submission" class="hidden flex-column eighty-width black-background rounded-corners medium-padding">
+        <p>Did you complete your task?</p>
+        <button id="focusCompleted" class="button-size-medium rounded-corners black-background color-scheme-border border-left-none border-right-none white-text">Yes</button>
+        <button id="focusIncomplete" class="button-size-medium rounded-corners black-background color-scheme-border border-left-none border-right-none white-text">No</button>
+      </div>
       <div id="menuWheelHolder">
         <a href="../index.html"></a>
         <svg width="50px" height="50px" id="menu-icon">
@@ -56,9 +51,6 @@
     <img id="backgroundImage">
     
   </main>
-    <script>
-            //fetch('https://api.openweathermap.org/data/2.5/weather?lat=33.3703&lon=-112.5838&units=imperial&appid=942be51159fb8974885b140d119e7493').then((response) => response.json()).then((data) => console.log(data));  
-    </script>
   <script src="../src/focus-index.js" type="module"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 #timer-circle {
     position: absolute;
-    top: 80px;
+    top: 120px;
 }
 
 #timer-circle > circle{
@@ -98,4 +98,17 @@
 @keyframes timerReduce{
     0%{stroke-dasharray: 880px 0px;}
     100%{stroke-dasharray: 0px 880px;}
+}
+
+.alert-popup {
+    opacity: 0;
+    animation-name: notify;
+    animation-delay: .25s;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes notify {
+    0%{margin-top: 70px; opacity: 0}
+    100%{margin-top: 15px; opacity: 1}
 }

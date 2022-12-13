@@ -51,6 +51,11 @@ import jsonHelper from "./json.js";
         element.classList.remove(className);
     }
 
+    toggleClass(element, fromClass, toClass){
+        this.removeClass(element, fromClass);
+        this.addClass(element, toClass);
+    }
+
     buildTemperatureUrl(lat, lon, units){
         return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=942be51159fb8974885b140d119e7493'`;
     }

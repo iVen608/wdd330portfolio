@@ -62,6 +62,16 @@ export default class SettingsController{
         document.getElementById("reset-user").addEventListener("click", (e) => {
             this.user = this.utilities.resetUser();
             this.init();
-        }, false)
+        }, false);
+        const radios = document.getElementsByName("units");
+        radios.forEach((element) => {
+            if(element.value === this.user.units){
+                element.checked = true;
+            }
+            element.addEventListener("change", (e) => {
+                this.user.units = element.value;
+                this.utilities.saveUser(this.user);
+            })
+        });
     }
 }

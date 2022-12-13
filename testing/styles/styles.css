@@ -25,6 +25,28 @@ p, li, label {
     font-size: 14px;
 }
 
+input[type="radio"]{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top:-18px;
+    left: 50px;
+}
+
+input[type="radio"]:checked::before{
+    content: ' ';
+    margin-left: 50%;
+    position: relative;
+    width: 15px;
+    left: -8px;
+    height: 15px;
+    background-color: black;
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px var(--color-selection), inset 0px 0px 5px var(--color-selection);
+}
+
+
+
 #imgContainer{
     position: fixed;
     width: 99vw;
@@ -275,79 +297,6 @@ p, li, label {
     color: white;
 }
 
-.border-style{
-    border-top: 20px solid transparent;
-    height: 100px;
-    border-right: 5px solid orangered;
-    position: absolute;
-}
-
-.border-top {
-    top: 0;
-}
-
-.border-left {
-    left: 0;
-}
-
-.border-left-none {
-    border-left: none;
-}
-.border-right-none {
-    border-right: none;
-}
-
-.move-left-small {
-    left: 10px;
-}
-
-.move-top-small {
-    top: 10px;
-}
-
-.border-bottom {
-    bottom: 0;
-}
-
-.border-right {
-    right: 0;
-}
-
-.flip-item {
-    border-right: none;
-    border-left: 5px solid orangered;
-}
-
-.rotate-small-negative {
-    transform: rotate(-30deg);
-}
-
-.rotate-small-positive {
-    transform: rotate(30deg);
-}
-
-.border-middle {
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.border-wide {
-    width: 50%;
-    height: 0;
-    border-bottom: 5px solid orangered;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-}
-
-.reverse {
-    border: none;
-    border-left: 20px solid transparent;
-    width: 100px;
-    height: 0;
-    border-bottom: 5px solid orangered;
-}
 
 svg > rect {
     fill: var(--color-selection);
@@ -438,8 +387,27 @@ Atomic CSS classes for general use
     box-shadow: 0px 0px 25px var(--color-selection), inset 0px 0px 25px var(--color-selection);
 }
 
+.white-border {
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    box-shadow: 0px 0px 25px white, inset 0px 0px 25px white;
+}
+.opacity-0 {
+    opacity: 0;
+}
+
+.z-index-1 {
+    z-index: 1;
+}
 .hidden {
     display: none;
+}
+
+.border-left-none {
+    border-left: none;
+}
+.border-right-none {
+    border-right: none;
 }
 
 .black-background {
@@ -488,12 +456,12 @@ Atomic CSS classes for general use
 
 .eighty-width{
     width: 80%;
-    max-width: 300px;
+    max-width: 150px;
 }
 
 .hundred-width{
     width: 100%;
-    max-width: 300px;
+    max-width: 150px;
 }
 
 .small-margin-top {
@@ -536,3 +504,16 @@ Atomic CSS classes for general use
 .center-in-div {
     margin-right: 0;
 }
+
+
+@media screen and (min-width: 480px) {
+    .eighty-width{
+        width: 80%;
+        max-width: 300px;
+    }
+    
+    .hundred-width{
+        width: 100%;
+        max-width: 300px;
+    }
+  }

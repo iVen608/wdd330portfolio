@@ -8,17 +8,12 @@
     <title>Settings</title>
 </head>
 <body>
-  <!--<div id="title">
-    <h1>Title</h1>
-    <div class="border-style border-top border-left move-top-small"></div>
-    <div class="border-style border-top border-left reverse move-left-small"></div>
-    <div class="border-style border-bottom border-right"></div>
-    <div class="border-style border-bottom border-right reverse"></div>
-  </div>-->
   <main>
     <div id="title">
-      <h1 id="titleText">Settings</h1>
-      <h3>Color Palette</h3>
+      <div class="color-scheme-border black-background medium-padding rounded-corners eighty-width small-margin-top">
+      <h1 id="titleText" class="color-scheme-text">Settings</h1>
+      <p id="color-selected"></p>
+      <h3>Color Palette:</h3>
       <div id="color-palette-holder">
         <button class="color-palette" data-color="blue"></button>
         <button class="color-palette" data-color="orange"></button>
@@ -30,15 +25,20 @@
         <button class="color-palette" data-color="limegreen"></button>
         <button class="color-palette" data-color="cyan"></button>
       </div>
-      <p id="color-selected">Color selected:</p>
+      
       <h3>Your Name:</h3>
-      <input name="name" id="name-input" placeholder="Enter your name here:" maxlength="12"/>
-      <button id="name-submit">Submit</button>
-      <p id="tempText"></p>
-      <button id="reset-user">Reset Saved Data</button>
-      <!--<div class="border-style border-top border-left move-top-small rotate-small-positive"></div>
-      <div class="border-style border-bottom border-right flip-item rotate-small-negative"></div>
-      <div class="border-style border-bottom border-middle border-wide"></div>-->
+      <input name="name" id="name-input" class="white-text black-background remove-border small-border-bottom-white" placeholder="Enter your name here:" maxlength="12"/>
+      <button id="name-submit">Change</button>
+      <h3>Temperature Units:</h3>
+      <div class="flex flex-column">
+      <label for="imperial" class="white-text">Imperial (°F)</label>
+      <input type="radio" name="units" value="imperial"/><br>
+      <label for="metric" class="white-text">Metric (°C)</label>
+      <input type="radio" name="units" value="metric"/><br>
+      <label for="standard" class="white-text">Standard (K)</label>
+      <input type="radio" name="units" value="standard"/><br>
+      </div>
+      <button id="reset-user" class="medium-margin-top">Reset Saved Data</button>
       <div id="menuWheelHolder">
         <a href="../index.html"></a>
         <svg width="50px" height="50px" id="menu-icon">
@@ -49,6 +49,7 @@
       <div id="imageCreditsHolder">
         <a id="nasaImgText" href="../view/nasa.html">&copy;</a>
       </div>
+    </div>
     </div>
     
     <img id="backgroundImage">

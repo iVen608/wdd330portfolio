@@ -41,10 +41,11 @@ export default class HomeController{
         //Customized greeting based on time of day
         this.homeView.displayTime(this.user.getName());
         //Build todo/habit list
-        this.homeView.buildView(this.user);
+        this.renderToDoList();
+        this.renderHabitList();
+        //this.homeView.buildView(this.user);
         //Adds event listeners
         this.addEvents();
-        console.log(this.user);
     }
 
     
@@ -63,6 +64,96 @@ export default class HomeController{
         this.homeView.removeListElement(id);
     }
 
+    toggleElement(id){
+        //If the id is in ToDo
+        if(this.user.todo.filter(e => e.id === id).length > 0){
+            const value = this.todos.toggleCompleted(id);
+            this.homeView.toggleListElement(id, value);
+        //Else is in Habit
+        } else if (this.user.habit.filter(e => e.id === id).length > 0){
+            this.habits.addStreak(id);
+            this.homeView.toggleListElement(id, true);
+        //If not in either
+        } else {
+            return;
+        }
+        this.utilities.saveUser(this.user);
+    }
+
+    buttons(parentNode, id, value){
+        const div = document.createElement("div");
+        div.classList.add('hidden', 'col-3', 'small-padding');
+        parentNode.appendChild(div);
+        parentNode.dataset.id = id;
+        const button = document.createElement("button");
+        button.classList.add('rounded-corners', "color-scheme-border", 'black-background', 'border-left-none', 'border-right-none', 'white-text');
+        button.textContent = "Toggle";
+        button.dataset.toggle = 'toggle';
+        div.appendChild(button);
+        const button1 = document.createElement("button");
+        button1.classList.add('rounded-corners', "color-scheme-border", 'black-background', 'border-left-none', 'border-right-none', 'white-text');
+        button1.textContent = "Focus";
+        button1.dataset.focus = 'focus';
+        div.appendChild(button1);
+        const button2 = document.createElement("button");
+        button2.classList.add('rounded-corners', "color-scheme-border", 'black-background', 'border-left-none', 'border-right-none', 'white-text');
+        button2.textContent = "Delete";
+        button2.dataset.delete = 'delete';
+        if(value === false){
+            this.utilities.toggleClass(button, "color-scheme-border", "opacity-0");
+            this.utilities.toggleClass(button1, "color-scheme-border", "opacity-0");
+            this.utilities.toggleClass(button2, "color-scheme-border", "white-border");
+        }
+        div.appendChild(button2);
+    }
+
+    renderToDoList(){
+        this.todos.getToDos().forEach(todo => {
+            const div = document.createElement("div");
+            div.classList.add( 'black-background', 'hundred-width', 'rounded-corners', 'small-padding', 'small-margin-top');
+            if(todo.completed === false){
+                div.classList.add("color-scheme-border");
+            } else {
+                div.classList.add("white-border");
+            }
+            document.getElementById("listContainer").appendChild(div);
+            const p = document.createElement("p");
+            p.textContent = todo.title;
+            p.dataset.title = 'listTitle';
+            p.classList.add('centered-text');
+            const p2 = document.createElement("p");
+            p2.classList.add('centered-text');
+            p2.textContent = "ToDo";
+            div.appendChild(p);
+            div.appendChild(p2);
+            this.buttons(div, todo.id, todo.completed);
+            this.homeView.appendToList(div);
+        });
+    }
+
+    renderHabitList(){
+        this.habits.getHabits().forEach((habit) => {
+            const div = document.createElement("div");
+            div.classList.add( 'black-background', 'color-scheme-border', 'hundred-width', 'rounded-corners', 'small-padding', 'small-margin-top');
+            document.getElementById("listContainer").appendChild(div);
+            const p = document.createElement("p");
+            p.textContent = habit.habit;
+            p.dataset.title = 'listTitle';
+            const p2 = document.createElement("p");
+            p2.textContent = `Streak: ${habit.streak} (${habit.frequency})`
+            p.classList.add('centered-text');
+            p2.classList.add('centered-text');
+            p2.dataset.title = 'listTitle';
+            const value = this.habits.validDate(habit.id);
+            if(value === false){
+                this.utilities.toggleClass(div, "color-sheme-border", "white-border");
+            }
+            div.appendChild(p);
+            div.appendChild(p2);
+            this.buttons(div, habit.id, value);
+        })
+    }
+
     focusElement(id){
         this.user.setFocus(id);
         this.utilities.saveUser(this.user);
@@ -72,7 +163,6 @@ export default class HomeController{
     addEvents(){
         document.querySelectorAll('[data-title]').forEach((element) => {
             element.addEventListener("click", (e) => {this.homeView.toggleListElementButtons(element);}, false)
-            console.log("a");
         });
         document.querySelectorAll('[data-delete]').forEach((element) => {
             element.addEventListener("click", (e) => {
@@ -81,8 +171,20 @@ export default class HomeController{
         });
         document.querySelectorAll('[data-focus]').forEach((element) => {
             element.addEventListener("click", (e) => {
+                if(element.classList.contains("opacity-0")){
+                    return;
+                }
                 const parentId = parseInt(element.parentElement.parentElement.dataset.id);
                 this.focusElement(parentId);}, false)
+        });
+
+        document.querySelectorAll('[data-toggle]').forEach((element) => {
+            element.addEventListener("click", (e) => {
+                if(element.classList.contains("opacity-0")){
+                    return;
+                }
+                const parentId = parseInt(element.parentElement.parentElement.dataset.id);
+                this.toggleElement(parentId);}, false)
         });
         const menuWheel = document.getElementById("menuWheel");
         const menuIcon = document.getElementById("menu-icon");
@@ -111,7 +213,6 @@ export default class HomeController{
             const lat = coords.coords.latitude;
             const lon = coords.coords.longitude;
             const tempResults = await this.jsonCall.getResults('https://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon=' + lon + '&units=' + units + '&appid=942be51159fb8974885b140d119e7493');
-            console.log(tempResults);
             const displayUnit = units == 'imperial' ? '°F' : units == 'metric' ? '°C' :  'K';
             this.homeView.displayTemperature(Math.ceil(tempResults.main.temp), displayUnit);
         }catch(err){

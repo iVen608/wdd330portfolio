@@ -16,7 +16,6 @@ export default class ToDos{
     removeToDo(timestamp){
         const index = this.list.findIndex(x => x.id === timestamp);
         this.list.splice(index, 1);
-        console.log(this.list);
     }
     toggleCompleted(timestamp){
         const index = this.list.findIndex(x => x.id === timestamp);
