@@ -58,6 +58,27 @@ p, li, label {
     padding-bottom: 25px;
 }
 
+#tempHolder {
+    position: fixed;
+    left: 30px;
+    top: 10px;
+}
+
+#tempHolder > p {
+    font-size: 20px;
+}
+
+#imageCreditsHolder {
+    position: fixed;
+    left: 30px;
+    bottom: 10px;
+}
+
+#imageCreditsHolder a{
+    text-decoration: underline;
+    color: white;
+}
+
 #menuWheelHolder {
     position: fixed;
     bottom: 25px;

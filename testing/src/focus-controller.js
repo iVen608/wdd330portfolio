@@ -1,22 +1,36 @@
 import Utilities from "./utilities.js";
 import User from './user.js';
+import NasaView from "./nasa-view.js";
+import jsonHelper from "./json.js";
+import nasa from "./nasa.js";
+
 export default class FocusController{
     constructor(){
         this.user;
+        this.jsonCall = new jsonHelper();
         this.utilities = new Utilities();
+        this.nasa;
         this.timeout;
         this.clock_timer;
+        this.nasaView = new NasaView();
+        this.nasaModel;
     }
-    //Initializes settings controller
-    init(){
+    //Initializes focus controller
+    async init(){
+        //Initialize User
         const user = this.utilities.getUser();
-        this.user = new User(user.color, user.position, user.name, user.todo, user.habit, user.focus);
-        console.log(this.user.getFocus());
+        this.user = new User(user.color, user.name, user.todo, user.habit, user.focus, user.units);
+        //Update Color Scheme based on User Preferences
         this.utilities.updateColor(this.user.color);
+        //Call and set NASA daily picture to background
+        const nasaResults = await this.jsonCall.getResults('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ');
+        this.nasaModel = new nasa(nasaResults);
+        this.nasaView.displayImage(this.nasaModel.getUrl());
+        this.nasaView.displayImageCopyright(this.nasaModel.getCopyright());
+        //Add event listeners
         this.addEvents();
     }
     addEvents(){
-        console.log("a");
         document.getElementById("timer").addEventListener('change', (e) =>{
             document.getElementById("timer").classList.add("hidden");
             document.getElementById('cancel-timer').classList.remove("hidden");

@@ -3,8 +3,8 @@ export default class NASA {
         this.url = obj.url;
         this.copyright = obj.copyright;
         this.date = obj.date;
-        this.description = this.explanation;
-        this.title = this.title;
+        this.description = obj.explanation;
+        this.title = obj.title;
     }
     getUrl(){
         return this.url;

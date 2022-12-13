@@ -16,6 +16,10 @@ export default class HomeView{
         }
     }
 
+    displayTemperature(temp ,displayUnit){
+        document.getElementById("tempText").innerHTML = temp + displayUnit;
+    }
+
     toggleListElementButtons(element){
         console.log("a");
         const parent = element.parentNode;

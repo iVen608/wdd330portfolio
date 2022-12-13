@@ -13,9 +13,9 @@ export default class Habits{
         let todo = {id: timestamp, habit: name, streak: 0, previous: date, created: date, frequency: frequency}
         this.list.push(todo);
     }
-    removeToDo(timestamp){
+    removeHabit(timestamp){
         const index = this.list.findIndex(x => x.id === timestamp);
-        this.list.splice(index, index + 1);
+        this.list.splice(index, 1);
     }
     addStreak(timestamp){
         

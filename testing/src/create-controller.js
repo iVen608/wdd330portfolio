@@ -1,15 +1,17 @@
 import jsonHelper from "./json.js";
 import Utilities from "./utilities.js";
 import CreateView from "./create-view.js";
+import NasaView from "./nasa-view.js";
 import ToDos from './ToDos.js';
 import Habits from './Habits.js';
 import User from './user.js';
+import nasa from "./nasa.js";
+
 export default class CreateController{
     constructor(){
         this.user;
+        this.nasaView = new NasaView();
         this.jsonCall = new jsonHelper();
-        this.nasaURL = 'https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ';
-        this.boredURL = 'https://www.boredapi.com/api/activity';
         this.utilities = new Utilities();
         this.selectedMenu = 'ToDo';
         this.createView = new CreateView();
@@ -18,15 +20,24 @@ export default class CreateController{
     }
     //Initializes create controller
     async init(){
+        //Initialize User
         const user = this.utilities.getUser();
-        this.user = new User(user.color, user.position, user.name, user.todo, user.habit);
+        this.user = new User(user.color, user.name, user.todo, user.habit, user.focus, user.units);
+        //Set ToDos from User to Object
         this.todos.setToDos(this.user.getToDos());
+        //Set Habits from User to Object
         this.habits.setHabits(this.user.getHabits());
+        //Update Color Scheme based on User Preferences
         this.utilities.updateColor(this.user.getColor());
-        this.addEvents();
+        //Initializes createView to set elements to properties
         this.createView.init();
-        //const nasaResults = await this.jsonCall.getResults(this.nasaURL);
-        //this.utilities.updateImage("backgroundImage", nasaResults.url);
+        //Call and set NASA daily picture to background
+        const nasaResults = await this.jsonCall.getResults('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ');
+        this.nasaModel = new nasa(nasaResults);
+        this.nasaView.displayImage(this.nasaModel.getUrl());
+        this.nasaView.displayImageCopyright(this.nasaModel.getCopyright());
+        //Adds event listeners
+        this.addEvents();
     }
     addEvents(){
         const todoToggle = document.getElementById("toDoToggle");

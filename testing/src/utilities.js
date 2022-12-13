@@ -22,6 +22,7 @@ import jsonHelper from "./json.js";
                 color: 'red',
                 todo: [],
                 habit: [],
+                units: 'imperial',
             }
             this.storage.setSavedItems(user);
         }
@@ -52,10 +53,6 @@ import jsonHelper from "./json.js";
 
     buildTemperatureUrl(lat, lon, units){
         return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=942be51159fb8974885b140d119e7493'`;
-    }
-
-    displayTemperature(temp ,displayUnit){
-        document.getElementById("tempText").innerHTML = temp + displayUnit;
     }
 
     async getGeoLocation(){

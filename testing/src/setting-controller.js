@@ -1,38 +1,36 @@
 import jsonHelper from "./json.js";
 import Utilities from "./utilities.js";
+import User from "./user.js";
+import NasaView from "./nasa-view.js";
+import nasa from "./nasa.js";
 
 export default class SettingsController{
     constructor(){
         this.user;
         this.utilities = new Utilities();
         this.jsonCall = new jsonHelper();
-        this.nasaURL = 'https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ';
+        this.nasaView = new NasaView();
+        this.nasaModel;
         
     }
     //Initializes settings controller
     async init(){
-        this.user = this.utilities.getUser();
+        //Initialize User
+        const user = this.utilities.getUser();
+        this.user = new User(user.color, user.name, user.todo, user.habit, user.focus, user.units);
+        //Update Color Scheme based on User Preferences
         this.utilities.updateColor(this.user.color);
-        this.addEvents();
-        const nasaResults = await this.jsonCall.getResults(this.nasaURL);
-        this.utilities.updateImage("backgroundImage", nasaResults.url);
-        if(this.user.name !== ''){
+        //Call and set NASA daily picture to background
+        const nasaResults = await this.jsonCall.getResults('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ');
+        this.nasaModel = new nasa(nasaResults);
+        this.nasaView.displayImage(this.nasaModel.getUrl());
+        this.nasaView.displayImageCopyright(this.nasaModel.getCopyright());
+        //If user's name is set, update the input
+        if(this.user.getName() !== ''){
             document.getElementById("name-input").value = this.user.name;
         }
-        try{
-            const coords = await this.utilities.getGeoLocation();
-            //units can either be imperial, standard, or metric
-            const units = 'metric';
-            const url = this.utilities.buildTemperatureUrl(coords.coords.latitude, coords.coords.longitude, units);
-            const lat = coords.coords.latitude;
-            const lon = coords.coords.longitude;
-            const tempResults = await this.jsonCall.getResults('https://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon=' + lon + '&units=' + units + '&appid=942be51159fb8974885b140d119e7493');
-            console.log(tempResults);
-            const displayUnit = units == 'imperial' ? '°F' : units == 'metric' ? '°C' :  'K';
-            this.utilities.displayTemperature(Math.ceil(tempResults.main.temp), displayUnit);
-        }catch(err){
-            console.log(err);
-        }
+        //Add event listeners
+        this.addEvents();
         
     }
 
@@ -60,7 +58,7 @@ export default class SettingsController{
             this.utilities.saveUser(this.user);
             document.getElementById("color-selected").textContent = "name has been changed";
         }, false);
-
+        //Deletes saved information and recreates new User;
         document.getElementById("reset-user").addEventListener("click", (e) => {
             this.user = this.utilities.resetUser();
             this.init();

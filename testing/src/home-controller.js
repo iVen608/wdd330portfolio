@@ -2,7 +2,11 @@ import jsonHelper from "./json.js";
 import nasa from "./nasa.js";
 import Utilities from "./utilities.js";
 import HomeView from "./home-view.js";
+import NasaView from "./nasa-view.js";
 import User from "./user.js";
+import ToDos from './ToDos.js';
+import Habits from './Habits.js';
+
 
 export default class HomeController{
     constructor(){
@@ -10,35 +14,50 @@ export default class HomeController{
         this.utilities = new Utilities();
         this.jsonCall = new jsonHelper();
         this.homeView = new HomeView();
+        this.nasaView = new NasaView();
         this.nasaModel;
+        this.todos = new ToDos();
+        this.habits = new Habits();
     }
 
     async init(){
-        const nasaResults = await this.jsonCall.getResults('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ');
-        this.utilities.updateImage("backgroundImage", nasaResults.url);
-        this.nasaModel = new nasa(nasaResults);
+        //Initialize User
         const user = this.utilities.getUser();
-        this.user = new User(user.color, user.position, user.name, user.todo, user.habit, user.focus);
-        console.log(this.user);
+        this.user = new User(user.color, user.name, user.todo, user.habit, user.focus, user.units);
+        //Set ToDos from User to Object
+        this.todos.setToDos(this.user.getToDos());
+        //Set Habits from User to Object
+        this.habits.setHabits(this.user.getHabits());
+        //Update Color Scheme based on User Preferences
         this.utilities.updateColor(this.user.getColor());
+        //Call and set NASA daily picture to background
+        const nasaResults = await this.jsonCall.getResults('https://api.nasa.gov/planetary/apod?api_key=BsBlogPZGaaKbnAWPlalYXaktliZWWnWKGLbmbzQ');
+        this.nasaModel = new nasa(nasaResults);
+        this.nasaView.displayImage(this.nasaModel.getUrl());
+        this.nasaView.displayImageCopyright(this.nasaModel.getCopyright());
+        //Home page Specific Functions
+        //Gets tempurature based on GeoLocation
+        this.getTemperature();
+        //Customized greeting based on time of day
         this.homeView.displayTime(this.user.getName());
-        window.setInterval(this.homeView.displayTime(this.user.getName()), 6000);
+        //Build todo/habit list
         this.homeView.buildView(this.user);
-        this.addEventListeners();
-        console.log(this.user.focused);
+        //Adds event listeners
+        this.addEvents();
+        console.log(this.user);
     }
 
     
     deleteElement(id){
+        //If the id is in ToDo
         if(this.user.todo.filter(e => e.id === id).length > 0){
-            console.log("z")
-            const index = this.user.todo.findIndex(x => x.id === id);
-            console.log(index);
-            this.user.todo.splice(index, 1);
+            this.todos.removeToDo(id);
+        //Else is in Habit
         } else if (this.user.habit.filter(e => e.id === id).length > 0){
-            console.log("w")
-            const index = this.user.habit.findIndex(x => x.id === id);
-            this.user.habit.splice(index, 1);
+            this.habits.removeHabit(id);
+        //If not in either
+        } else {
+            return;
         }
         this.utilities.saveUser(this.user);
         this.homeView.removeListElement(id);
@@ -50,9 +69,10 @@ export default class HomeController{
         window.location.href = "./view/focus.html";
     }
 
-    addEventListeners(){
+    addEvents(){
         document.querySelectorAll('[data-title]').forEach((element) => {
             element.addEventListener("click", (e) => {this.homeView.toggleListElementButtons(element);}, false)
+            console.log("a");
         });
         document.querySelectorAll('[data-delete]').forEach((element) => {
             element.addEventListener("click", (e) => {
@@ -64,47 +84,43 @@ export default class HomeController{
                 const parentId = parseInt(element.parentElement.parentElement.dataset.id);
                 this.focusElement(parentId);}, false)
         });
+        const menuWheel = document.getElementById("menuWheel");
+        const menuIcon = document.getElementById("menu-icon");
+
+        document.getElementById("menuButton").addEventListener("click", e => {
+            if(menuWheel.classList.contains('visible') && menuIcon.classList.contains('x')){
+                menuWheel.classList.remove('visible');
+                setTimeout(() =>{menuIcon.classList.remove('x');}, 500)
+                menuWheel.classList.add("invisible");
+            }else if(menuWheel.classList.contains('invisible')){
+                menuWheel.classList.add('visible');
+                menuWheel.classList.remove("invisible");
+                setTimeout(() =>{menuIcon.classList.add('x');}, 500)
+            }else {
+                menuWheel.classList.add('visible');
+                setTimeout(() =>{menuIcon.classList.add('x');}, 500)
+            }
+        });
+    }
+
+    async getTemperature(){
+        try{
+            const coords = await this.utilities.getGeoLocation();
+            //units can either be imperial, standard, or metric
+            const units = this.user.getUnits();
+            const lat = coords.coords.latitude;
+            const lon = coords.coords.longitude;
+            const tempResults = await this.jsonCall.getResults('https://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon=' + lon + '&units=' + units + '&appid=942be51159fb8974885b140d119e7493');
+            console.log(tempResults);
+            const displayUnit = units == 'imperial' ? '°F' : units == 'metric' ? '°C' :  'K';
+            this.homeView.displayTemperature(Math.ceil(tempResults.main.temp), displayUnit);
+        }catch(err){
+            console.log(err);
+        }
     }
 }
 
 
 
-const menuWheel = document.getElementById("menuWheel");
-const menuIcon = document.getElementById("menu-icon");
-
-document.getElementById("menuButton").addEventListener("click", e => {
-    if(menuWheel.classList.contains('visible') && menuIcon.classList.contains('x')){
-        menuWheel.classList.remove('visible');
-        setTimeout(() =>{menuIcon.classList.remove('x');}, 500)
-        menuWheel.classList.add("invisible");
-    }else if(menuWheel.classList.contains('invisible')){
-        menuWheel.classList.add('visible');
-        menuWheel.classList.remove("invisible");
-        setTimeout(() =>{menuIcon.classList.add('x');}, 500)
-    }else {
-        menuWheel.classList.add('visible');
-        setTimeout(() =>{menuIcon.classList.add('x');}, 500)
-    }
-});
 
 
-//Change color scheme
-
-const listContainer = document.getElementById("listContainer");
-function colorPalette(){
-    for(let r = 0; r < 5; r++){
-        for(let g = 0; g < 5; g++){
-            const div = document.createElement("div");
-                div.style.backgroundColor = `rgb(${r*51}, ${g*51}, ${g*51})`;
-                const hexLabel = document.createElement("p");
-                hexLabel.textContent = `${r*51}, ${g*51}, ${g*51}`;
-                div.appendChild(hexLabel);
-                listContainer.appendChild(div);
-        }
-    }
-};
-
-
-
-
-//colorPalette();
