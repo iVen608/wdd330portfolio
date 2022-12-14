@@ -80,7 +80,7 @@ export default class HomeController{
         this.utilities.saveUser(this.user);
     }
 
-    buttons(parentNode, id, value){
+    buttons(parentNode, id, value, option){
         const div = document.createElement("div");
         div.classList.add('hidden', 'col-3', 'small-padding');
         parentNode.appendChild(div);
@@ -99,8 +99,12 @@ export default class HomeController{
         button2.classList.add('rounded-corners', "color-scheme-border", 'black-background', 'border-left-none', 'border-right-none', 'white-text');
         button2.textContent = "Delete";
         button2.dataset.delete = 'delete';
-        if(value === false){
+        if(value === false && option === "habit"){
             this.utilities.toggleClass(button, "color-scheme-border", "opacity-0");
+            this.utilities.toggleClass(button1, "color-scheme-border", "opacity-0");
+            this.utilities.toggleClass(button2, "color-scheme-border", "white-border");
+        } else if(value === true && option === "todo"){
+            this.utilities.toggleClass(button, "color-scheme-border", "white-border");
             this.utilities.toggleClass(button1, "color-scheme-border", "opacity-0");
             this.utilities.toggleClass(button2, "color-scheme-border", "white-border");
         }
@@ -126,7 +130,7 @@ export default class HomeController{
             p2.textContent = "ToDo";
             div.appendChild(p);
             div.appendChild(p2);
-            this.buttons(div, todo.id, todo.completed);
+            this.buttons(div, todo.id, todo.completed, "todo");
             this.homeView.appendToList(div);
         });
     }
@@ -150,7 +154,7 @@ export default class HomeController{
             }
             div.appendChild(p);
             div.appendChild(p2);
-            this.buttons(div, habit.id, value);
+            this.buttons(div, habit.id, value, "habit");
         })
     }
 
