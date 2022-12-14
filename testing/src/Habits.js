@@ -21,6 +21,11 @@ export default class Habits{
         const index = this.list.findIndex(x => x.id === timestamp);
         this.list[index].streak += 1;
         this.list[index].previous = new Date();
+        return this.list[index].streak;
+    }
+    getFrequency(timestamp){
+        const index = this.list.findIndex(x => x.id === timestamp);
+        return this.list[index].frequency;
     }
     validDate(timestamp){
         const index = this.list.findIndex(x => x.id === timestamp);

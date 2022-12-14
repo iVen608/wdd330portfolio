@@ -71,8 +71,9 @@ export default class HomeController{
             this.homeView.toggleListElement(id, value);
         //Else is in Habit
         } else if (this.user.habit.filter(e => e.id === id).length > 0){
-            this.habits.addStreak(id);
-            this.homeView.toggleListElement(id, true);
+            const streak = this.habits.addStreak(id);
+            const frequency = this.habits.getFrequency(id);
+            this.homeView.toggleListElementHabit(id, true, streak, frequency);
         //If not in either
         } else {
             return;
@@ -144,7 +145,7 @@ export default class HomeController{
             p.textContent = habit.habit;
             p.dataset.title = 'listTitle';
             const p2 = document.createElement("p");
-            p2.textContent = `Streak: ${habit.streak} (${habit.frequency})`
+            p2.textContent = `Streak: ${habit.streak} (${habit.frequency})`;
             p.classList.add('centered-text');
             p2.classList.add('centered-text');
             p2.dataset.title = 'listTitle';

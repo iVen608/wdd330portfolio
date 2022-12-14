@@ -29,6 +29,20 @@ export default class HomeView{
         }
     }
 
+    toggleListElementHabit(id, value, streak, frequency){
+        const element = document.querySelector(`[data-id='${id}']`);
+        if(value === true){
+            this.utilities.toggleClass(element, "color-scheme-border", "white-border");
+            element.children[1].textContent = `Streak: ${streak} (${frequency})`
+            Array.from(element.children[2].children).forEach((e) => {
+                this.utilities.toggleClass(e, "color-scheme-border", "opacity-0");
+                if(e.hasAttribute("data-delete")) {
+                    this.utilities.toggleClass(e, "opacity-0", "white-border");
+                }
+        })
+    }
+    }
+
     appendToList(element){
         document.getElementById("listContainer").appendChild(element);
     }
