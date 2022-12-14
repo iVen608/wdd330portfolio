@@ -60,6 +60,8 @@ export default class HomeView{
                 this.utilities.toggleClass(e, "color-scheme-border", "white-border");
                 if(e.hasAttribute("data-focus")) {
                     this.utilities.addClass(e, "opacity-0");
+                } else if(e.hasAttribute("data-toggle")){
+                    e.textContent = 'Undo';
                 }
             });
         } else {
@@ -68,6 +70,9 @@ export default class HomeView{
                 this.utilities.toggleClass(e, "white-border", "color-scheme-border");
                 if(e.hasAttribute("data-focus")) {
                     this.utilities.removeClass(e, "opacity-0");
+                }
+                if(e.hasAttribute("data-toggle")){
+                    e.textContent = 'Complete';
                 }
             });
         }  

@@ -88,7 +88,7 @@ export default class HomeController{
         parentNode.dataset.id = id;
         const button = document.createElement("button");
         button.classList.add('rounded-corners', "color-scheme-border", 'black-background', 'border-left-none', 'border-right-none', 'white-text');
-        button.textContent = "Toggle";
+        button.textContent = "Complete";
         button.dataset.toggle = 'toggle';
         div.appendChild(button);
         const button1 = document.createElement("button");
@@ -106,6 +106,7 @@ export default class HomeController{
             this.utilities.toggleClass(button2, "color-scheme-border", "white-border");
         } else if(value === true && option === "todo"){
             this.utilities.toggleClass(button, "color-scheme-border", "white-border");
+            button.textContent = "Undo";
             this.utilities.toggleClass(button1, "color-scheme-border", "opacity-0");
             this.utilities.toggleClass(button2, "color-scheme-border", "white-border");
         }
