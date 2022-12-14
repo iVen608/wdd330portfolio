@@ -17,6 +17,7 @@ const links = [
     {label: "Week 8 Notes", link: "week8Notes/index.html"},
     {label: "Week 9 Notes", link: "week9Notes/index.html"},
     {label: "Notes Formatter", link: "noteFormatCreator/index.html"},
+    {label: "Final Project - Block 2 Challenge", link: "testing/index.html"},
 ]
 var list_container = document.getElementById("list-container");
 for (let i = 0; i < links.length; i++){
